@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Wealth Shift
+
+A journey-based conversion funnel, rooted in personal growth and values. The tone is soft-premium, the UX is clean and empowering, and the intent is to filter for aligned participants, not just capture traffic.
+
+## Project Overview
+
+The Wealth Shift is not just a website—it's a journey-based conversion funnel that guides users through a two-step ritual (Assessment + Manifesto) before gaining full access to the portal. This builds exclusivity and commitment early on.
+
+### Core Features
+
+- **Landing Page**: Introduces the concept and invites users to begin their journey
+- **Assessment**: Embedded form to understand the user's current wealth mindset
+- **Manifesto**: Value commitment form to align with The Wealth Shift principles
+- **Unlock Page**: Welcome video and portal access
+- **Portal**: Dashboard with access to various resources and tools
+
+### Brand Aesthetic
+
+- Sage, cream, earthy-gold tones
+- Afrocentric elegance
+- Bold yet graceful serif fonts with clean layouts
+- Visual metaphors: growth, sisterhood, rebirth, light
 
 ## Getting Started
 
@@ -16,21 +37,44 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+the-wealth-shift/
+├── docs/                  # Project documentation
+├── public/                # Static assets
+│   └── images/            # Images and icons
+├── src/
+│   ├── app/               # Next.js App Router pages
+│   │   ├── assessment/    # Assessment page
+│   │   ├── manifesto/     # Manifesto page
+│   │   ├── portal/        # Portal pages
+│   │   └── unlock/        # Unlock page
+│   ├── components/        # Reusable components
+│   └── utils/             # Utility functions
+```
 
-## Learn More
+## Technology Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: [Next.js](https://nextjs.org)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Forms**: Tally/Typeform (to be integrated)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) for the current status of the project and next steps.
 
-## Deploy on Vercel
+## Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) - Current status and next steps
+- [SITE_MAP.md](./docs/SITE_MAP.md) - Site structure and user flow
+- [TALLY_FORM_SETUP.md](./docs/TALLY_FORM_SETUP.md) - Instructions for setting up Tally forms
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The project is intended to be deployed on Vercel.
+
+## Credits
+
+Powered by LevrAge Innovation Studios
