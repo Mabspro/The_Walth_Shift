@@ -70,10 +70,13 @@ See [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) for the current status of the 
 - [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) - Current status and next steps
 - [SITE_MAP.md](./docs/SITE_MAP.md) - Site structure and user flow
 - [TALLY_FORM_SETUP.md](./docs/TALLY_FORM_SETUP.md) - Instructions for setting up Tally forms
+- [VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md) - Guide for deploying to Vercel
 
 ## Deployment
 
-The project is intended to be deployed on Vercel.
+The project is deployed on Vercel. For deployment instructions and environment variables, see [VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md).
+
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://the-wealth-shift.vercel.app)
 
 ## Credits
 
