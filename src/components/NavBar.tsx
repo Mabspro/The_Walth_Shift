@@ -15,7 +15,7 @@ const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false
     }`}>
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <h1 className="text-2xl font-bold text-accent">The Wealth Shift</h1>
+          <h1 className="text-3xl font-bold text-[#4A6741]">The Wealth Shift</h1>
         </Link>
         
         {isPortal ? (
