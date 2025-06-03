@@ -313,19 +313,29 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  <div className="group bg-background/30 backdrop-blur-sm p-8 rounded-lg border border-accent/50 shadow-inner transform transition-all duration-500 hover:shadow-[0_0_20px_rgba(212,168,80,0.7)] hover:border-accent/70 cursor-pointer">
-                    <div className="bg-rich-green/70 backdrop-blur-sm p-4 rounded-lg border border-accent/30">
-                      <blockquote className="text-2xl italic text-center font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                  <div 
+                    className="group bg-background/30 backdrop-blur-sm p-4 md:p-8 rounded-lg border border-accent/50 shadow-inner transform transition-all duration-500 hover:shadow-[0_0_20px_rgba(212,168,80,0.7)] hover:border-accent/70 cursor-pointer"
+                    onClick={() => {
+                      // This empty click handler enables the tap functionality on mobile
+                    }}
+                  >
+                    <div className="bg-rich-green/70 backdrop-blur-sm p-3 md:p-4 rounded-lg border border-accent/30">
+                      <blockquote className="text-xl md:text-2xl italic text-center font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                         &ldquo;Growth happens at the intersection of challenge and support.&rdquo;
                       </blockquote>
                     </div>
-                    <div className="mt-6 text-center">
+                    <div className="mt-4 md:mt-6 text-center">
                       <span className="inline-block w-16 h-0.5 bg-accent rounded"></span>
-                      <p className="text-xs mt-3 italic font-medium transition-opacity duration-300 group-hover:opacity-0" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Hover to reveal more</p>
+                      <p className="text-xs mt-3 italic font-medium transition-opacity duration-300 group-hover:opacity-0" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                        {/* Different text for mobile and desktop */}
+                        <span className="hidden md:inline">Hover</span>
+                        <span className="inline md:hidden">Tap</span>
+                        {" to reveal more"}
+                      </p>
                     </div>
                     
-                    {/* Author attribution that appears on hover */}
-                    <div className="mt-6 overflow-hidden h-0 group-hover:h-auto transition-all duration-500 ease-in-out">
+                    {/* Author attribution that appears on hover/tap */}
+                    <div className="mt-4 md:mt-6 overflow-hidden h-0 group-hover:h-auto transition-all duration-500 ease-in-out">
                       <p className="text-sm text-center elegant-text font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
                         — The Wealth Shift Manifesto
                       </p>
