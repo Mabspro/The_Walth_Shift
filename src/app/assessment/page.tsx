@@ -7,40 +7,40 @@ import SimpleForm from '@/components/SimpleForm';
 export default function Assessment() {
   return (
     <GatedLayout>
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Your Wealth Journey Assessment</h1>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12 mt-16">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Let&apos;s Get to Know You</h1>
           <p className="text-xl font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-            Discover where you are on your wealth journey with our personalized assessment.
-            This will help us understand your needs and provide you with the most relevant resources.
+            Help us create a personalized experience by sharing a bit about your wealth journey.
+            This will help us curate the most relevant resources and tools for you.
           </p>
         </div>
         
         <div className="bg-background/20 backdrop-blur-sm rounded-lg shadow-lg p-8 mb-8 border border-accent/30">
-          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--subheading)' }}>Before You Begin</h2>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--subheading)' }}>Just a Few Questions</h2>
           <p className="mb-4 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-            This assessment will take approximately 5-10 minutes to complete. Please answer each question
-            honestly to get the most accurate results.
+            This will take just a few minutes to complete. Please answer each question honestly 
+            so we can create the best personalized experience for you.
           </p>
           <p className="mb-4 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
             Your responses will help us:
           </p>
           <ul className="list-disc pl-6 mb-6 space-y-2">
             <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Understand your current <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>wealth mindset</span></li>
-            <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Identify areas for <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>growth and development</span></li>
-            <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Customize your <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>journey</span> through The Wealth Shift</li>
+            <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Curate <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>personalized content</span> for your portal</li>
+            <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Recommend the right <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>tools and workbooks</span> for you</li>
             <li className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Connect you with relevant <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>resources</span> and community members</li>
           </ul>
           <p className="opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-            After completing the assessment, you&apos;ll be directed to our manifesto page where you can
+            After sharing a bit about yourself, you&apos;ll be directed to our manifesto page where you can
             learn more about our core values and principles.
           </p>
         </div>
         
-        {/* Simple assessment form with redirect to manifesto page */}
+        {/* Simple personalization form with redirect to manifesto page */}
         <SimpleForm
-          title="Wealth Journey Assessment"
-          description="Please answer the following questions to help us understand your wealth journey better."
+          title="Tell Us About Your Journey"
+          description="Please answer the following questions to help us personalize your experience."
           questions={[
             {
               id: 'wealth_mindset',
@@ -89,13 +89,13 @@ export default function Assessment() {
           ]}
           submitButtonText="Continue to Manifesto"
           redirectUrl="/manifesto"
-          className="bg-background/10 backdrop-blur-sm rounded-lg border border-accent/20 p-2"
+          className=""
         />
         
         <div className="mt-12 text-center">
           <p className="text-sm elegant-text font-medium opacity-90" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-            By completing this assessment, you&apos;re taking the first step on your wealth journey.
-            Your responses are confidential and will only be used to enhance your experience.
+            By sharing a bit about yourself, you&apos;re helping us create the perfect experience for your wealth journey.
+            Your responses are confidential and will only be used to enhance your personalized portal experience.
           </p>
         </div>
       </div>

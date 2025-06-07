@@ -263,12 +263,62 @@ button:hover, .button:hover {
 .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .bg-rich-green { background-color: var(--rich-green); }
 .bg-accent { background-color: var(--accent); }
-.text-accent { color: var(--accent); }
+.text-accent { color: var(--accent) !important; }
 .text-background { color: var(--background); }
 .text-cream { color: var(--cream); }
 .border { border-width: 1px; }
 .border-accent { border-color: var(--accent); }
 .hover\:bg-highlight:hover { background-color: var(--highlight); }
+
+/* Portal Light Theme */
+.portal-light-theme {
+  --background: var(--cream);
+  --foreground: var(--deep-sage);
+  --card-background: #FFFFFF;
+  --card-border: rgba(74, 103, 65, 0.1);
+  --text-primary: var(--deep-sage);
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+}
+
+.portal-light-theme .bg-background\/20 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.portal-light-theme .bg-background\/10 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.portal-light-theme .border-accent\/30 {
+  border-color: rgba(212, 167, 106, 0.2);
+}
+
+.portal-light-theme .border-accent\/20 {
+  border-color: rgba(212, 167, 106, 0.15);
+}
+
+.portal-light-theme .border-accent\/10 {
+  border-color: rgba(212, 167, 106, 0.1);
+}
+
+.portal-light-theme h1,
+.portal-light-theme h2,
+.portal-light-theme h3,
+.portal-light-theme h4,
+.portal-light-theme h5,
+.portal-light-theme h6 {
+  color: var(--deep-sage);
+}
+
+.portal-light-theme p,
+.portal-light-theme span,
+.portal-light-theme li {
+  color: var(--text-secondary);
+}
+
+.bg-cream {
+  background-color: var(--cream);
+}
 
 /* Media queries for responsive design */
 @media (min-width: 768px) {

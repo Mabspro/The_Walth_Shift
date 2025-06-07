@@ -10,6 +10,7 @@ interface CardProps {
   linkText?: string;
   className?: string;
   children?: React.ReactNode;
+  icon?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -19,10 +20,17 @@ const Card: React.FC<CardProps> = ({
   linkUrl,
   linkText = 'Learn More',
   className = '',
-  children
+  children,
+  icon
 }) => {
+  // Check if className contains backdrop-blur (landing page cards)
+  const isLandingPageCard = className.includes('backdrop-blur');
+  
   return (
-    <div className={`bg-background/20 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 border border-accent/20 ${className}`}>
+    <div 
+      className={`rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 border border-accent/20 ${className}`}
+      style={isLandingPageCard ? {} : { backgroundColor: 'white' }}
+    >
       {imageUrl && (
         <div className="relative w-full h-48 mb-4 overflow-hidden rounded-t-lg">
           <Image
@@ -35,8 +43,13 @@ const Card: React.FC<CardProps> = ({
         </div>
       )}
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--subheading)' }}>{title}</h3>
-        {description && <p className="mb-4 opacity-90 leading-relaxed font-medium" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>{description}</p>}
+        {icon && (
+          <div className="text-3xl mb-3 text-center">
+            {icon}
+          </div>
+        )}
+        <h3 className="text-xl font-bold mb-2 text-deep-sage">{title}</h3>
+        {description && <p className="mb-4 leading-relaxed font-medium text-gray-600">{description}</p>}
         {children}
         {linkUrl && (
           <div className="mt-4">

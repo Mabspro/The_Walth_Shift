@@ -4,14 +4,14 @@ import Card from '@/components/Card';
 export default function Marketplace() {
   return (
     <div className="container mx-auto px-6">
-      <div className="text-center mb-16">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Marketplace</h1>
-        <p className="text-xl max-w-3xl mx-auto">
+      <div className="text-center mb-16 mt-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-deep-sage">Marketplace</h1>
+        <p className="text-xl max-w-3xl mx-auto text-gray-600">
           Discover curated resources and offerings to support your wealth journey.
         </p>
       </div>
       
-      <div className="bg-accent/10 rounded-lg p-8 mb-12">
+      <div className="bg-white rounded-lg p-8 mb-12 border border-accent/20 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-2/3">
             <h2 className="text-2xl font-bold mb-4">Featured Resource</h2>
@@ -28,7 +28,7 @@ export default function Marketplace() {
               <li>Lifetime access</li>
             </ul>
           </div>
-          <div className="md:w-1/3 bg-background rounded-lg p-6 shadow-md">
+          <div className="md:w-1/3 bg-gray-50 rounded-lg p-6 shadow-md">
             <h4 className="font-bold mb-2">Special Offer</h4>
             <p className="mb-1 text-sm">Regular price: $197</p>
             <p className="mb-4 text-xl font-bold text-accent">Member price: $97</p>
@@ -108,7 +108,7 @@ export default function Marketplace() {
         />
       </div>
       
-      <div className="bg-background rounded-lg shadow-lg p-8 mb-16">
+      <div className="bg-white rounded-lg shadow-lg p-8 mb-16 border border-accent/20">
         <h2 className="text-2xl font-bold mb-4">Our Curation Process</h2>
         <p className="mb-6">
           Every resource in our marketplace is carefully curated to ensure it aligns with our core values and provides

@@ -102,7 +102,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
   };
 
   return (
-    <div className={`w-full max-w-4xl mx-auto my-8 ${className}`}>
+    <div className={`w-full max-w-6xl mx-auto my-8 ${className}`}>
       <div className="bg-background/20 backdrop-blur-sm rounded-lg p-8 border border-accent/30 shadow-lg">
         <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{title}</h2>
         

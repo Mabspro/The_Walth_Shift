@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function Unlock() {
   return (
     <GatedLayout showFooter={false}>
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center">
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Welcome to The Wealth Shift</h1>
           <p className="text-xl font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
@@ -28,7 +28,7 @@ export default function Unlock() {
             controls={false}
             showCustomControls={true}
             posterImage="/images/wealth.png"
-            className="bg-background/10 backdrop-blur-sm rounded-lg border border-accent/20 p-2"
+            className=""
             onComplete={() => {
               // Show a success message or highlight the portal button when video is complete
               document.getElementById('portal-button')?.classList.add('animate-pulse', 'shadow-[0_0_20px_rgba(212,168,80,0.7)]');

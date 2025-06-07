@@ -43,10 +43,10 @@ export default function Home() {
         {/* Section 1: Hero */}
         <section className="relative">
           <Hero 
-            title="The Wealth Shift"
-            subtitle="A journey of growth, empowerment, and community building."
-            ctaText="Begin Your Journey"
-            ctaLink="/assessment"
+            title="✨ Welcome to Your Wealth Era"
+            subtitle="The Wealth Shift is your permission slip to grow differently. One bold choice at a time."
+            ctaText="Start My Shift →"
+            ctaLink="/manifesto"
             secondaryCtaText="Explore More"
             secondaryCtaLink="#"
             secondaryCtaOnClick={() => scrollToSection(2)}
@@ -115,14 +115,12 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {/* Title removed as it's in the background image */}
-              {/* <h2 className="text-3xl md:text-4xl font-bold mb-4 text-accent">The Invitation</h2> */}
-              <p className="text-xl max-w-3xl mx-auto text-cream elegant-text">
-                This is not just a website—it&apos;s a journey-based conversion funnel, rooted in personal growth and values.
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent elegant-text">Your Wealth Shift Starts Here</h2>
+              <p className="text-xl max-w-3xl mx-auto text-cream elegant-text mb-4">
+                The Wealth Shift is your permission slip to grow differently. One bold choice at a time.
               </p>
-              
-              <p className="italic text-center text-emerald-200 mt-10 mb-6 elegant-text">
-                &ldquo;Every journey begins with a shift.&rdquo;
+              <p className="text-lg max-w-2xl mx-auto text-emerald-200 elegant-text">
+                Just three simple steps to start shifting how you live, earn, and build wealth.
               </p>
             </motion.div>
             
@@ -133,24 +131,27 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Card
-                title="Assessment"
-                description="Discover where you are on your wealth journey with our personalized assessment."
-                linkUrl="/assessment"
-                linkText="Take Assessment"
-                className="backdrop-blur-sm bg-background/90"
-              />
-              <Card
-                title="Manifesto"
-                description="Understand our core values and commit to the principles that guide our community."
+                icon="✍️"
+                title="Step 1: Read the Manifesto"
+                description="Explore our values and see if The Wealth Shift feels like home."
                 linkUrl="/manifesto"
-                linkText="Read Manifesto"
+                linkText="Why We Shift →"
                 className="backdrop-blur-sm bg-background/90"
               />
               <Card
-                title="Portal"
-                description="Access exclusive resources, workbooks, and community features."
+                icon="🔓"
+                title="Step 2: Enter the Portal"
+                description="Get access to tools, community, and resources to keep you moving forward."
                 linkUrl="/unlock"
-                linkText="Enter Portal"
+                linkText="Unlock Access →"
+                className="backdrop-blur-sm bg-background/90"
+              />
+              <Card
+                icon="🧠"
+                title="Step 3: Take the Assessment"
+                description="Find out where you are on your financial journey—no shame, just clarity."
+                linkUrl="/portal"
+                linkText="Start Now →"
                 className="backdrop-blur-sm bg-background/90"
               />
             </motion.div>
@@ -208,141 +209,130 @@ export default function Home() {
             <SvgAccent className="top-10 left-10" color="#d4a850" opacity={0.15} />
             <SvgAccent className="bottom-10 right-10" color="#d4a850" opacity={0.15} />
             <motion.div 
-              className="flex flex-col md:flex-row items-center gap-12"
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-accent">✨ The Wealth Shift Is Built On</h2>
+              <div className="w-20 h-1 bg-accent/30 rounded mx-auto mb-12"></div>
+            </motion.div>
+
+            <motion.div 
+              className="flex flex-col md:flex-row items-stretch gap-8"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="md:w-1/2">
+              <div className="md:w-1/2 space-y-6">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -5,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  className="bg-background/20 backdrop-blur-sm rounded-lg p-6 border border-accent/30 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-accent">Our Philosophy</h2>
-                  <div className="w-20 h-1 bg-accent/30 rounded mb-8"></div>
+                  <div className="flex items-center mb-3">
+                    <span className="text-3xl mr-3">🌱</span>
+                    <span className="inline-block w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent font-bold">1</span>
+                    <h3 className="text-xl font-semibold" style={{ color: 'var(--subheading)' }}>Intentional Growth</h3>
+                  </div>
+                  <p className="text-lg font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
+                    We build wealth from the inside out—grounded in purpose, not pressure.
+                  </p>
                 </motion.div>
                 
-                <div className="space-y-8">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex items-start"
-                  >
-                    <div className="flex-shrink-0 mr-4 mt-1">
-                      <div className="w-1 h-12 bg-highlight rounded-full"></div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2 flex items-center" style={{ color: 'var(--subheading)' }}>
-                        <span className="inline-block w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent">1</span>
-                        Intentional Growth
-                      </h3>
-                      <p className="text-lg mb-2 pl-9 font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                        The Wealth Shift is built on the foundation of <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>intentional growth</span>, community support, and authentic empowerment.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="flex items-start"
-                  >
-                    <div className="flex-shrink-0 mr-4 mt-1">
-                      <div className="w-1 h-12 bg-highlight rounded-full"></div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2 flex items-center" style={{ color: 'var(--subheading)' }}>
-                        <span className="inline-block w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent">2</span>
-                        Aligned Community
-                      </h3>
-                      <p className="text-lg mb-2 pl-9 font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                        We believe in creating a space that filters for <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>aligned participants</span> who are committed to their personal journey.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="flex items-start"
-                  >
-                    <div className="flex-shrink-0 mr-4 mt-1">
-                      <div className="w-1 h-12 bg-highlight rounded-full"></div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2 flex items-center" style={{ color: 'var(--subheading)' }}>
-                        <span className="inline-block w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent">3</span>
-                        Transformative Approach
-                      </h3>
-                      <p className="text-lg mb-2 pl-9 font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
-                        Our approach is soft-premium, clean, and <span style={{ color: 'var(--earth-tone)', fontWeight: 'bold' }}>empowering</span> - designed to guide you through meaningful transformation.
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-              <div className="md:w-1/2 relative h-80 md:h-96 w-full rounded-lg overflow-hidden shadow-lg">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/20 backdrop-blur-sm"></div>
-                <motion.div 
-                  className="absolute inset-0" 
-                  animate={{ 
-                    backgroundPosition: ['0% 0%', '100% 100%'],
-                    opacity: [0.05, 0.1, 0.05]
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -5,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                   }}
-                  transition={{ 
-                    duration: 20, 
-                    ease: "linear", 
-                    repeat: Infinity,
-                    repeatType: "reverse" 
-                  }}
-                  style={{
-                    backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23d4a850\' fill-opacity=\'0.2\'%3E%3Cpath d=\'M0 0h10v10H0zm10 10h10v10H10z\'/%3E%3C/g%3E%3C/svg%3E")',
-                    backgroundSize: '30px 30px'
-                  }}
-                ></motion.div>
-                
-                {/* Quote container with animation */}
-                <motion.div 
-                  className="absolute inset-0 flex items-center justify-center p-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="bg-background/20 backdrop-blur-sm rounded-lg p-6 border border-accent/30 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                 >
-                  <div 
-                    className="group bg-background/30 backdrop-blur-sm p-4 md:p-8 rounded-lg border border-accent/50 shadow-inner transform transition-all duration-500 hover:shadow-[0_0_20px_rgba(212,168,80,0.7)] hover:border-accent/70 cursor-pointer"
-                    onClick={() => {
-                      // This empty click handler enables the tap functionality on mobile
+                  <div className="flex items-center mb-3">
+                    <span className="text-3xl mr-3">🤝</span>
+                    <span className="inline-block w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent font-bold">2</span>
+                    <h3 className="text-xl font-semibold" style={{ color: 'var(--subheading)' }}>Aligned Community</h3>
+                  </div>
+                  <p className="text-lg font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
+                    This space is for women who are ready to be real—with themselves and each other. If you&apos;re seeking growth, willing to show up honestly, and craving something deeper—you&apos;re home.
+                  </p>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -5,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  className="bg-background/20 backdrop-blur-sm rounded-lg p-6 border border-accent/30 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center mb-3">
+                    <span className="text-3xl mr-3">✨</span>
+                    <span className="inline-block w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3 text-accent font-bold">3</span>
+                    <h3 className="text-xl font-semibold" style={{ color: 'var(--subheading)' }}>Transformative Approach</h3>
+                  </div>
+                  <p className="text-lg font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
+                    Growth happens at the intersection of challenge and support.
+                  </p>
+                </motion.div>
+              </div>
+              
+              <div className="md:w-1/2 flex">
+                <motion.div 
+                  className="w-full bg-background/20 backdrop-blur-sm rounded-lg border border-accent/30 shadow-lg flex flex-col justify-center p-8 relative overflow-hidden"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  {/* Animated background elements */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/20"></div>
+                  <motion.div 
+                    className="absolute inset-0" 
+                    animate={{ 
+                      backgroundPosition: ['0% 0%', '100% 100%'],
+                      opacity: [0.05, 0.1, 0.05]
                     }}
-                  >
-                    <div className="bg-rich-green/70 backdrop-blur-sm p-3 md:p-4 rounded-lg border border-accent/30">
-                      <blockquote className="text-xl md:text-2xl italic text-center font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                    transition={{ 
+                      duration: 20, 
+                      ease: "linear", 
+                      repeat: Infinity,
+                      repeatType: "reverse" 
+                    }}
+                    style={{
+                      backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23d4a850\' fill-opacity=\'0.2\'%3E%3Cpath d=\'M0 0h10v10H0zm10 10h10v10H10z\'/%3E%3C/g%3E%3C/svg%3E")',
+                      backgroundSize: '30px 30px'
+                    }}
+                  ></motion.div>
+                  
+                  {/* Quote content */}
+                  <div className="relative z-10 text-center">
+                    <div className="bg-rich-green/70 backdrop-blur-sm p-6 rounded-lg border border-accent/30 mb-6">
+                      <blockquote className="text-2xl md:text-3xl italic font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                         &ldquo;Growth happens at the intersection of challenge and support.&rdquo;
                       </blockquote>
                     </div>
-                    <div className="mt-4 md:mt-6 text-center">
-                      <span className="inline-block w-16 h-0.5 bg-accent rounded"></span>
-                      <p className="text-xs mt-3 italic font-medium transition-opacity duration-300 group-hover:opacity-0" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                        {/* Different text for mobile and desktop */}
-                        <span className="hidden md:inline">Hover</span>
-                        <span className="inline md:hidden">Tap</span>
-                        {" to reveal more"}
-                      </p>
-                    </div>
                     
-                    {/* Author attribution that appears on hover/tap */}
-                    <div className="mt-4 md:mt-6 overflow-hidden h-0 group-hover:h-auto transition-all duration-500 ease-in-out">
-                      <p className="text-sm text-center elegant-text font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                    <div className="text-center">
+                      <span className="inline-block w-16 h-0.5 bg-accent rounded mb-4"></span>
+                      <p className="text-sm elegant-text font-medium opacity-90" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
                         — The Wealth Shift Manifesto
                       </p>
                       
-                      <div className="mt-4 max-w-xs mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-rich-green/70 p-3 rounded-lg border border-accent/30">
-                        <p className="text-sm text-center font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                          Tap into our community of like-minded individuals who are committed to growth and transformation.
+                      <div className="mt-6 bg-rich-green/70 p-4 rounded-lg border border-accent/30">
+                        <p className="text-sm font-bold" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                          The Wealth Shift was born in that space—between challenge and deep support.
                         </p>
                       </div>
                     </div>
@@ -369,10 +359,12 @@ export default function Home() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Ready to Begin Your Journey?</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>✨ Your Wealth Shift Starts With One Bold Yes.</h2>
                   <div className="w-24 h-1 bg-accent rounded mx-auto mb-8"></div>
                   <p className="text-xl max-w-3xl mx-auto mb-10 font-medium elegant-text opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                    Take the first step by completing our assessment and joining our community of growth-minded individuals.
+                    Start with a simple step—and join a movement of women choosing growth, clarity, and courage.
+                    <br />
+                    You don&apos;t have to do this alone. We shift together.
                   </p>
                   
                   <motion.div
@@ -383,12 +375,12 @@ export default function Home() {
                       href="/assessment" 
                       className="px-10 py-4 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_20px_rgba(212,168,80,0.5)]"
                     >
-                      Begin Your Journey
+                      Start My Shift →
                     </a>
                   </motion.div>
                   
                   <p className="mt-6 text-sm elegant-text font-medium opacity-90" style={{ color: 'var(--warm-gold)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                    Join over 500 individuals who have already started their wealth shift
+                    500+ women have already begun. Now it&apos;s your turn.
                   </p>
                 </motion.div>
               </div>

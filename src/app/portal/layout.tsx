@@ -8,9 +8,9 @@ export default function PortalLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen portal-light-theme">
       <NavBar isPortal={true} />
-      <main className="flex-grow pt-24 pb-12">
+      <main className="flex-grow pt-32 pb-12 bg-cream min-h-screen">
         {children}
       </main>
       <Footer />

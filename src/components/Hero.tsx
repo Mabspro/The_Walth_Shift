@@ -43,8 +43,8 @@ const Hero: React.FC<HeroProps> = ({
       
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-2xl text-cream ml-0 md:ml-8 lg:ml-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-cream">
+        <div className="max-w-4xl text-cream ml-0 md:ml-8 lg:ml-16">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-cream md:whitespace-nowrap">
             {title}
           </h1>
           

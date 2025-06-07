@@ -4,15 +4,15 @@ import Card from '@/components/Card';
 export default function Giving() {
   return (
     <div className="container mx-auto px-6">
-      <div className="text-center mb-16">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Giving</h1>
-        <p className="text-xl max-w-3xl mx-auto">
+      <div className="text-center mb-16 mt-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-deep-sage">Giving</h1>
+        <p className="text-xl max-w-3xl mx-auto text-gray-600">
           Find opportunities to contribute and give back to the community.
           True wealth includes the ability to make a positive impact.
         </p>
       </div>
       
-      <div className="bg-gradient-bg text-background rounded-lg p-8 mb-12">
+      <div className="bg-white rounded-lg p-8 mb-12 border border-accent/20 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-2/3">
             <h2 className="text-2xl font-bold mb-4">Featured Initiative</h2>
@@ -27,12 +27,12 @@ export default function Giving() {
                 <span className="font-semibold">Current Progress</span>
                 <span>$15,750 of $25,000</span>
               </div>
-              <div className="w-full bg-background/20 rounded-full h-2.5">
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
                 <div className="bg-accent h-2.5 rounded-full" style={{ width: '63%' }}></div>
               </div>
             </div>
           </div>
-          <div className="md:w-1/3 bg-background text-foreground rounded-lg p-6 shadow-md">
+          <div className="md:w-1/3 bg-gray-50 rounded-lg p-6 shadow-md">
             <h4 className="font-bold mb-2">Make a Contribution</h4>
             <p className="mb-4 text-sm">
               Every contribution, no matter the size, makes a difference in the lives of women entrepreneurs.
@@ -97,10 +97,10 @@ export default function Giving() {
         />
       </div>
       
-      <div className="bg-accent/10 rounded-lg p-8 mb-16">
+      <div className="bg-white rounded-lg p-8 mb-16 border border-accent/20 shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Impact Stories</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-background rounded-lg p-6 shadow-md">
+          <div className="bg-gray-50 rounded-lg p-6 shadow-md">
             <h3 className="text-xl font-semibold mb-2">Maya&apos;s Story</h3>
             <p className="mb-4">
               &ldquo;With the microloan from the Women&apos;s Entrepreneurship Fund, I was able to purchase equipment
@@ -111,7 +111,7 @@ export default function Giving() {
               Maya J., Catering Business Owner
             </p>
           </div>
-          <div className="bg-background rounded-lg p-6 shadow-md">
+          <div className="bg-gray-50 rounded-lg p-6 shadow-md">
             <h3 className="text-xl font-semibold mb-2">Community Garden Impact</h3>
             <p className="mb-4">
               &ldquo;The community garden project has transformed our neighborhood. Not only do we have
@@ -125,7 +125,7 @@ export default function Giving() {
         </div>
       </div>
       
-      <div className="bg-background rounded-lg shadow-lg p-8 mb-16">
+      <div className="bg-white rounded-lg shadow-lg p-8 mb-16 border border-accent/20">
         <h2 className="text-2xl font-bold mb-4">Our Giving Philosophy</h2>
         <p className="mb-6">
           At The Wealth Shift, we believe that true wealth includes the ability to make a positive impact
