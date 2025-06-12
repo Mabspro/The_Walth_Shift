@@ -46,7 +46,7 @@ export default function Home() {
             title="✨ Welcome to Your Wealth Era"
             subtitle="The Wealth Shift is your permission slip to grow differently. One bold choice at a time."
             ctaText="Start My Shift →"
-            ctaLink="/manifesto"
+            ctaLink="/assessment"
             secondaryCtaText="Explore More"
             secondaryCtaLink="#"
             secondaryCtaOnClick={() => scrollToSection(2)}
@@ -131,8 +131,16 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Card
+                icon="🧠"
+                title="Step 1: Take the Assessment"
+                description="Find out where you are on your financial journey—no shame, just clarity."
+                linkUrl="/assessment"
+                linkText="Start Now →"
+                className="backdrop-blur-sm bg-background/90"
+              />
+              <Card
                 icon="✍️"
-                title="Step 1: Read the Manifesto"
+                title="Step 2: Read the Manifesto"
                 description="Explore our values and see if The Wealth Shift feels like home."
                 linkUrl="/manifesto"
                 linkText="Why We Shift →"
@@ -140,18 +148,10 @@ export default function Home() {
               />
               <Card
                 icon="🔓"
-                title="Step 2: Enter the Portal"
-                description="Get access to tools, community, and resources to keep you moving forward."
-                linkUrl="/unlock"
-                linkText="Unlock Access →"
-                className="backdrop-blur-sm bg-background/90"
-              />
-              <Card
-                icon="🧠"
-                title="Step 3: Take the Assessment"
-                description="Find out where you are on your financial journey—no shame, just clarity."
+                title="Step 3: Enter the Portal"
+                description="Get access to workbooks, challenges, and resources based on your assessment results."
                 linkUrl="/portal"
-                linkText="Start Now →"
+                linkText="Enter Portal →"
                 className="backdrop-blur-sm bg-background/90"
               />
             </motion.div>
