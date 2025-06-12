@@ -16,7 +16,8 @@ interface SimpleFormProps {
   description?: string;
   questions: Question[];
   submitButtonText?: string;
-  redirectUrl: string;
+  redirectUrl?: string;
+  onSubmit?: (formData: Record<string, string | string[]>) => void;
   className?: string;
 }
 
@@ -26,6 +27,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
   questions,
   submitButtonText = 'Submit',
   redirectUrl,
+  onSubmit,
   className = ''
 }) => {
   const router = useRouter();
@@ -90,13 +92,23 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
     if (validateForm()) {
       setIsSubmitting(true);
       
+      // Store form data in localStorage for potential use later
+      localStorage.setItem(`form_${title.replace(/\s+/g, '_').toLowerCase()}`, JSON.stringify(formData));
+      
       // Simulate form submission delay
       setTimeout(() => {
-        // Store form data in localStorage for potential use later
-        localStorage.setItem(`form_${title.replace(/\s+/g, '_').toLowerCase()}`, JSON.stringify(formData));
+        if (onSubmit) {
+          // Call the onSubmit callback if provided
+          onSubmit(formData);
+        } else if (redirectUrl) {
+          // Redirect to the next page if redirectUrl is provided
+          router.push(redirectUrl);
+        }
         
-        // Redirect to the next page
-        router.push(redirectUrl);
+        // Reset submission state if not redirecting
+        if (!redirectUrl) {
+          setIsSubmitting(false);
+        }
       }, 1000);
     }
   };

@@ -1,83 +1,136 @@
 # The Wealth Shift
 
-A journey-based conversion funnel, rooted in personal growth and values. The tone is soft-premium, the UX is clean and empowering, and the intent is to filter for aligned participants, not just capture traffic.
+**A journey-based conversion funnel, rooted in personal growth, transformation, and aligned community.**  
+The tone is soft-premium. The UX is clean, empowering, and designed to attract intentional participants—not passive visitors.
 
-## Project Overview
+---
 
-The Wealth Shift is not just a website—it's a journey-based conversion funnel that guides users through a two-step ritual (Assessment + Manifesto) before gaining full access to the portal. This builds exclusivity and commitment early on.
+## 🌍 Project Overview
 
-### Core Features
+The Wealth Shift is more than a website—it's an intentional experience.
 
-- **Landing Page**: Introduces the concept and invites users to begin their journey
-- **Assessment**: Embedded form to understand the user's current wealth mindset
-- **Manifesto**: Value commitment form to align with The Wealth Shift principles
-- **Unlock Page**: Welcome video and portal access
-- **Portal**: Dashboard with access to various resources and tools
+Users move through a **multi-stage transformational journey**:
+1. **Assessment** – Discover their current financial mindset
+2. **Manifesto** – Commit to core values of Self-Honor, Discipline, and Accountability
+3. **Portal Access** – Unlock a personalized journey including recommended workbooks, progress tracking, and rewards
 
-### Brand Aesthetic
+This structure builds exclusivity, internal buy-in, and community alignment.
 
-- Sage, cream, earthy-gold tones
-- Afrocentric elegance
-- Bold yet graceful serif fonts with clean layouts
-- Visual metaphors: growth, sisterhood, rebirth, light
+---
 
-## Getting Started
+## 🧠 Core Features
 
-First, run the development server:
+- **Landing Page:** Hero section + elegant introduction to the movement
+- **Assessment System:** Quiz logic returns Wealth Level, Mindset, and Workbook recommendations
+- **Manifesto Agreement:** Value commitment gate for intentional participation
+- **Unlock Page:** Welcome video and next step CTA
+- **Personalized Portal:** Shows user-specific workbook track, daily check-in system, and progress visuals
+- **Workbook System:** Tracks daily engagement and unlocks challenges and rewards
+- **Challenge Pages:** Post-workbook reflection + badge system
+- **Email Integrations:** Tagging logic triggers milestone-based coaching and reward emails
+
+---
+
+## 🎨 Brand Aesthetic
+
+- Color Palette: Deep forest green, soft sage, warm gold, cream, and earthy accents
+- Typography: Graceful serif headers, modern readable body fonts
+- Theme: Afrocentric elegance, sisterhood, growth, intention, financial rebirth
+
+---
+
+## 🚀 Getting Started
+
+Clone the repo and run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧱 Project Structure
 
-## Project Structure
-
-```
 the-wealth-shift/
-├── docs/                  # Project documentation
-├── public/                # Static assets
-│   └── images/            # Images and icons
+├── docs/                      # Project documentation
+├── public/                    # Static assets
+│   └── images/                # Brand visuals, backgrounds, icons
 ├── src/
-│   ├── app/               # Next.js App Router pages
-│   │   ├── assessment/    # Assessment page
-│   │   ├── manifesto/     # Manifesto page
-│   │   ├── portal/        # Portal pages
-│   │   └── unlock/        # Unlock page
-│   ├── components/        # Reusable components
-│   └── utils/             # Utility functions
-```
+│   ├── app/                   # Next.js App Router
+│   │   ├── assessment/        # Assessment page
+│   │   ├── manifesto/         # Manifesto page
+│   │   ├── unlock/            # Unlock + onboarding video
+│   │   ├── portal/            # Main user portal & dashboard
+│   │   ├── workbook/          # Workbook start & daily check-in
+│   │   ├── challenge/         # Challenge unlock + reflection form
+│   │   └── complete/          # Final milestone rewards
+│   ├── components/            # Shared components (nav, footer, progress bars)
+│   ├── lib/                   # Firebase / email / tagging integrations
+│   ├── styles/                # Tailwind + custom tokens
+│   └── utils/                 # Logic helpers (quiz scoring, user flow)
 
-## Technology Stack
+🧰 Technology Stack
+Frontend Framework: Next.js
 
-- **Framework**: [Next.js](https://nextjs.org)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Forms**: Tally/Typeform (to be integrated)
+Styling: Tailwind CSS
 
-## Current Status
+Animations: Framer Motion
 
-See [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) for the current status of the project and next steps.
+Forms: Tally / Typeform (for onboarding logic)
 
-## Documentation
+Database (Planned): Firebase (Auth, Firestore for user data + tracking)
 
-- [PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) - Current status and next steps
-- [SITE_MAP.md](./docs/SITE_MAP.md) - Site structure and user flow
-- [TALLY_FORM_SETUP.md](./docs/TALLY_FORM_SETUP.md) - Instructions for setting up Tally forms
-- [VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md) - Guide for deploying to Vercel
+Email Automation: Flodesk or ConvertKit (via Zapier/Make or Firebase Functions)
 
-## Deployment
+📈 Journey Logic (Quick Reference)
+Phase	Function
+Assessment	Scores user into level + mindset + workbook set
+Portal	Reveals personal plan + progress tracking
+Workbook Tracker	Logs daily activity and triggers rewards
+Challenges	Unlock post-workbook, offer actions + reflection
+Email Coaching	Sends nudges, motivation, badges, completion gifts
+Final Rewards	Certificate, coupon, gift card, invite for coaching
 
-The project is deployed on Vercel. For deployment instructions and environment variables, see [VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md).
+For detailed logic, see docs/ASSESSMENT_LOGIC.md
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://the-wealth-shift.vercel.app)
+📚 Documentation
+PROJECT_STATUS.md – Current build progress and next steps
 
-## Credits
+SITE_MAP.md – Page flow and user journey map
 
-Powered by LevrAge Innovation Studios
+TALLY_FORM_SETUP.md – Quiz/manifesto embed + logic guide
+
+ASSESSMENT_LOGIC.md – Full logic structure for personalized journey
+
+VERCEL_DEPLOYMENT.md – Vercel deploy steps + env config
+
+🧪 Deployment
+The site is live at:
+
+🔗 https://the-wealth-shift.vercel.app
+
+For deployment configs, hosting notes, and secrets setup see VERCEL_DEPLOYMENT.md
+
+🧠 Next Milestones
+ Firebase backend + auth + tracking
+
+ Flodesk/ConvertKit integration with progress-based tagging
+
+ “Reveal Results” logic engine
+
+ Gamified portal dashboard (badges, next-step CTAs)
+
+ Final reward fulfillment automation (gift card, certificate delivery)
+
+🙏 Credits
+Created by LevrAge Innovation Studios
+Crafted with intention for The Wealth Shift movement
+
+
+
+
+
+
+
+
+

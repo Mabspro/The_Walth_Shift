@@ -320,6 +320,25 @@ button:hover, .button:hover {
   background-color: var(--cream);
 }
 
+/* Animations */
+@keyframes progress {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+.animate-progress {
+  animation: progress 8s linear forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
 /* Media queries for responsive design */
 @media (min-width: 768px) {
   .md\:flex { display: flex; }

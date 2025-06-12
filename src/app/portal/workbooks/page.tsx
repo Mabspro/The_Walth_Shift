@@ -1,7 +1,57 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Card from '@/components/Card';
+import { 
+  getAssessmentResult, 
+  hasCompletedAssessment,
+  availableWorkbooks,
+  WorkbookType
+} from '@/utils/assessment';
 
 export default function Workbooks() {
+  const [assessmentCompleted, setAssessmentCompleted] = useState(false);
+  const [recommendedWorkbookIds, setRecommendedWorkbookIds] = useState<string[]>([]);
+  const [featuredWorkbook, setFeaturedWorkbook] = useState(availableWorkbooks[0]);
+
+  useEffect(() => {
+    // Check if the user has completed the assessment
+    const completed = hasCompletedAssessment();
+    setAssessmentCompleted(completed);
+
+    if (completed) {
+      // Get the assessment result
+      const result = getAssessmentResult();
+      
+      if (result) {
+        // Get the recommended workbooks
+        const recommended = result.recommendedWorkbooks
+          .filter(workbook => workbook.recommended)
+          .map(workbook => workbook.id);
+        
+        setRecommendedWorkbookIds(recommended);
+        
+        // Set the featured workbook to the first recommended workbook
+        if (recommended.length > 0) {
+          const firstRecommended = result.recommendedWorkbooks.find(w => w.id === recommended[0]);
+          if (firstRecommended) {
+            setFeaturedWorkbook(firstRecommended);
+          }
+        }
+      }
+    }
+  }, []);
+
+  // Map our workbook types to the card titles
+  const workbookTypeToTitle = {
+    [WorkbookType.MindsetAwareness]: "Abundance Mindset Activation",
+    [WorkbookType.DebtClarity]: "Financial Clarity Blueprint",
+    [WorkbookType.AssetsNetWorth]: "Value-Based Wealth Planning",
+    [WorkbookType.Investing]: "Wealth Archetype Discovery",
+    [WorkbookType.IncomeSideHustles]: "Prosperity Journaling Practice",
+    [WorkbookType.Legacy]: "Wealth Legacy Planning"
+  };
+
   return (
     <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
@@ -14,12 +64,24 @@ export default function Workbooks() {
       <div className="bg-white rounded-lg p-8 mb-12 border border-accent/20 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-2/3">
-            <h2 className="text-2xl font-bold mb-4">Featured Workbook</h2>
-            <h3 className="text-xl font-semibold mb-2">Abundance Mindset Activation</h3>
+            <div className="flex items-center mb-4">
+              <h2 className="text-2xl font-bold">Featured Workbook</h2>
+              {assessmentCompleted && recommendedWorkbookIds.includes(featuredWorkbook.id) && (
+                <span className="ml-3 text-sm font-semibold px-3 py-1 bg-sage/20 text-sage rounded-full">
+                  Recommended for You
+                </span>
+              )}
+            </div>
+            <h3 className="text-xl font-semibold mb-2 flex items-center">
+              <span className="text-2xl mr-2">{featuredWorkbook.icon}</span>
+              {featuredWorkbook.title}
+            </h3>
             <p className="mb-4">
-              This comprehensive workbook guides you through exercises designed to shift your mindset from scarcity to abundance.
-              Through reflective prompts, visualization techniques, and practical activities, you&apos;ll begin to recognize and
-              embrace the abundance that already exists in your life.
+              {featuredWorkbook.description}
+              {featuredWorkbook.type === WorkbookType.MindsetAwareness && (
+                <span> Through reflective prompts, visualization techniques, and practical activities, you&apos;ll begin to recognize and
+                embrace the abundance that already exists in your life.</span>
+              )}
             </p>
             <ul className="list-disc pl-6 mb-6 space-y-1">
               <li>7 guided exercises</li>
@@ -35,56 +97,52 @@ export default function Workbooks() {
               (15-20 minutes daily)
             </p>
             <a 
-              href="#" 
+              href={`/portal/workbooks/${featuredWorkbook.id}`}
               className="px-6 py-3 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-colors duration-300 inline-block w-full text-center"
             >
-              Download Workbook
+              View Workbook
             </a>
           </div>
         </div>
       </div>
       
-      <h2 className="text-2xl font-bold mb-6">All Workbooks</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">All Workbooks</h2>
+        {assessmentCompleted && (
+          <div className="text-sm text-gray-600">
+            <span className="inline-block font-semibold mr-2 px-3 py-1 bg-sage/20 text-sage rounded-full">
+              Recommended for You
+            </span>
+            <i>based on your assessment results</i>
+          </div>
+        )}
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <Card
-          title="Abundance Mindset Activation"
-          description="Shift from scarcity to abundance through guided exercises and practices."
-          linkUrl="#"
-          linkText="View Workbook"
-        />
-        <Card
-          title="Financial Clarity Blueprint"
-          description="Gain clarity on your current financial situation and set empowering goals."
-          linkUrl="#"
-          linkText="View Workbook"
-        />
-        <Card
-          title="Value-Based Wealth Planning"
-          description="Align your wealth-building strategies with your core values and purpose."
-          linkUrl="#"
-          linkText="View Workbook"
-        />
-        <Card
-          title="Wealth Archetype Discovery"
-          description="Discover your unique wealth archetype and leverage your natural strengths."
-          linkUrl="#"
-          linkText="Coming Soon"
-          className="opacity-70"
-        />
-        <Card
-          title="Prosperity Journaling Practice"
-          description="Transform your relationship with wealth through guided journaling prompts."
-          linkUrl="#"
-          linkText="Coming Soon"
-          className="opacity-70"
-        />
-        <Card
-          title="Wealth Legacy Planning"
-          description="Create a meaningful plan for your wealth legacy and impact."
-          linkUrl="#"
-          linkText="Coming Soon"
-          className="opacity-70"
-        />
+        {availableWorkbooks.map((workbook) => {
+          const isRecommended = assessmentCompleted && recommendedWorkbookIds.includes(workbook.id);
+          const title = workbookTypeToTitle[workbook.type] || workbook.title;
+          
+          return (
+            <div key={workbook.id} className="relative">
+              {isRecommended && (
+                <div className="absolute top-2 right-2 z-10">
+                  <span className="inline-block text-sm font-semibold px-3 py-1 bg-sage/20 text-sage rounded-full">
+                    Recommended
+                  </span>
+                </div>
+              )}
+              <Card
+                icon={workbook.icon}
+                title={title}
+                description={workbook.description}
+                linkUrl={`/portal/workbooks/${workbook.id}`}
+                linkText="View Workbook"
+              className=""
+              />
+            </div>
+          );
+        })}
       </div>
       
       <div className="bg-white rounded-lg shadow-lg p-8 mb-16 border border-accent/20">

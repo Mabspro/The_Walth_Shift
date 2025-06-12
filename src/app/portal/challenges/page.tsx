@@ -1,190 +1,140 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Card from '@/components/Card';
-
-// Animated Progress Bar Component
-const AnimatedProgressBar = ({ progress, total }: { progress: number; total: number }) => {
-  const [animatedProgress, setAnimatedProgress] = useState(0);
-  const percentage = (progress / total) * 100;
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimatedProgress(percentage);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [percentage]);
-
-  return (
-    <div className="mb-6">
-      <div className="flex justify-between mb-2">
-        <span className="font-semibold">Progress</span>
-        <span>Day {progress} of {total}</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-        <div 
-          className="bg-gradient-to-r from-accent to-highlight h-3 rounded-full transition-all duration-1000 ease-out relative"
-          style={{ width: `${animatedProgress}%` }}
-        >
-          <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-        </div>
-      </div>
-      <div className="flex justify-between mt-1 text-sm text-gray-600">
-        <span>{progress} days completed</span>
-        <span>{total - progress} days remaining</span>
-      </div>
-    </div>
-  );
-};
-
-// Floating motivation bubbles
-const MotivationBubbles = () => {
-  const motivations = ['💪', '🎯', '✨', '🚀', '💎'];
-  
-  return (
-    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
-      {motivations.map((emoji, index) => (
-        <div
-          key={index}
-          className="absolute text-2xl opacity-20"
-          style={{
-            left: `${20 + index * 15}%`,
-            animation: `float-up 6s linear infinite`,
-            animationDelay: `${index * 1.2}s`,
-          }}
-        >
-          {emoji}
-        </div>
-      ))}
-      <style jsx>{`
-        @keyframes float-up {
-          0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.3;
-          }
-          90% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </div>
-  );
-};
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { getChallenges, Challenge, getEarnedBadges } from '@/utils/challenges';
 
 export default function Challenges() {
+  const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [earnedBadges, setEarnedBadges] = useState<string[]>([]);
+  
+  useEffect(() => {
+    // Get challenges with their unlock status
+    const allChallenges = getChallenges();
+    setChallenges(allChallenges);
+    
+    // Get earned badges
+    const badges = getEarnedBadges();
+    setEarnedBadges(badges);
+  }, []);
+  
   return (
-    <div className="container mx-auto px-6 relative">
-      <MotivationBubbles />
+    <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-deep-sage">Challenges</h1>
         <p className="text-xl max-w-3xl mx-auto text-gray-600">
-          Engage with practical challenges to implement what you&apos;re learning and create lasting change.
+          Complete challenges to earn badges and deepen your wealth journey.
         </p>
       </div>
       
+      {/* Badges Section */}
       <div className="bg-white rounded-lg p-8 mb-12 border border-accent/20 shadow-lg">
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <div className="md:w-2/3">
-            <h2 className="text-2xl font-bold mb-4">Current Challenge</h2>
-            <h3 className="text-xl font-semibold mb-2">21-Day Abundance Practice</h3>
-            <p className="mb-4">
-              This 21-day challenge guides you through daily practices designed to shift your relationship with abundance.
-              Each day includes a simple 5-10 minute activity that builds upon the previous day&apos;s work.
-            </p>
-            <AnimatedProgressBar progress={3} total={21} />
+        <h2 className="text-2xl font-bold mb-6">Your Badges</h2>
+        
+        {earnedBadges.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {earnedBadges.map((badge, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center text-3xl mb-2">
+                  {challenges.find(c => c.reward === badge)?.icon || '🏆'}
+                </div>
+                <span className="text-center font-semibold">{badge}</span>
+              </div>
+            ))}
           </div>
-          <div className="md:w-1/3 bg-gray-50 rounded-lg p-6 shadow-md">
-            <h4 className="font-bold mb-2">Today&apos;s Challenge</h4>
-            <p className="mb-4 text-sm">
-              <strong>Day 3: Gratitude Inventory</strong><br />
-              Create a detailed inventory of all the abundance already present in your life.
+        ) : (
+          <div className="text-center py-8 bg-gray-50 rounded-lg">
+            <p className="text-gray-600">
+              Complete challenges to earn badges and track your progress.
             </p>
-            <a 
-              href="#" 
-              className="px-6 py-3 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-colors duration-300 inline-block w-full text-center"
-            >
-              View Today&apos;s Challenge
-            </a>
+            <p className="mt-2 text-accent font-semibold">
+              Start by completing a workbook to unlock your first challenge!
+            </p>
           </div>
-        </div>
+        )}
       </div>
       
-      <h2 className="text-2xl font-bold mb-6">Upcoming Challenges</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <Card
-          title="Money Mindset Reset"
-          description="A 14-day challenge to transform your relationship with money through daily practices."
-          linkUrl="#"
-          linkText="Starting June 15"
-          className="opacity-70"
-        />
-        <Card
-          title="Wealth Visualization"
-          description="A 7-day challenge focused on powerful visualization techniques for wealth creation."
-          linkUrl="#"
-          linkText="Starting June 22"
-          className="opacity-70"
-        />
-        <Card
-          title="Prosperity Habits"
-          description="A 30-day challenge to establish daily habits that support your wealth journey."
-          linkUrl="#"
-          linkText="Starting July 1"
-          className="opacity-70"
-        />
+      {/* Available Challenges */}
+      <h2 className="text-2xl font-bold mb-6">Available Challenges</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {challenges.map((challenge) => (
+          <div 
+            key={challenge.id} 
+            className={`bg-white rounded-lg overflow-hidden border shadow-md transition-all duration-300 ${
+              challenge.unlocked 
+                ? 'border-accent/30 hover:shadow-lg hover:-translate-y-1' 
+                : 'border-gray-200 opacity-75'
+            }`}
+          >
+            <div className="p-6">
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">{challenge.icon}</span>
+                <h3 className="text-xl font-bold">{challenge.title}</h3>
+                {challenge.completed && (
+                  <span className="ml-auto bg-sage/20 text-sage px-3 py-1 rounded-full text-sm font-semibold">
+                    Completed
+                  </span>
+                )}
+              </div>
+              
+              <p className="mb-6 text-gray-600">{challenge.description}</p>
+              
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-sm text-gray-500">Reward:</span>
+                  <span className="ml-2 font-semibold text-accent">{challenge.reward}</span>
+                </div>
+                
+                {challenge.unlocked ? (
+                  <Link 
+                    href={`/portal/challenges/${challenge.id}`}
+                    className="px-4 py-2 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-colors duration-300"
+                  >
+                    {challenge.completed ? 'View Details' : 'Start Challenge'}
+                  </Link>
+                ) : (
+                  <div className="flex items-center">
+                    <span className="text-sm text-gray-500 mr-2">Locked</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+              
+              {!challenge.unlocked && (
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                  <p className="text-sm text-gray-500">
+                    Complete the <Link href={`/portal/workbooks/${challenge.requiredWorkbookId}`} className="text-accent hover:text-highlight">required workbook</Link> to unlock this challenge.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
       
-      <h2 className="text-2xl font-bold mb-6">Past Challenges</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <Card
-          title="Wealth Affirmations"
-          description="A 10-day challenge introducing powerful wealth affirmations and how to use them effectively."
-          linkUrl="#"
-          linkText="View Challenge"
-        />
-        <Card
-          title="Financial Decluttering"
-          description="A 5-day challenge to organize and simplify your financial life."
-          linkUrl="#"
-          linkText="View Challenge"
-        />
-      </div>
-      
+      {/* How Challenges Work */}
       <div className="bg-white rounded-lg shadow-lg p-8 mb-16 border border-accent/20">
         <h2 className="text-2xl font-bold mb-4">How Challenges Work</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <div className="text-accent text-4xl font-bold mb-2">01</div>
-            <h3 className="text-lg font-semibold mb-2">Join a Challenge</h3>
-            <p>
-              Browse available challenges and join the one that resonates with your current focus.
-              Each challenge has a specific start date and duration.
-            </p>
-          </div>
-          <div>
-            <div className="text-accent text-4xl font-bold mb-2">02</div>
-            <h3 className="text-lg font-semibold mb-2">Daily Practice</h3>
-            <p>
-              Each day, you&apos;ll receive a new challenge activity. Complete the activity and mark it as done
-              to track your progress.
-            </p>
-          </div>
-          <div>
-            <div className="text-accent text-4xl font-bold mb-2">03</div>
-            <h3 className="text-lg font-semibold mb-2">Reflect & Integrate</h3>
-            <p>
-              After completing a challenge, take time to reflect on your experience and how you&apos;ll
-              integrate what you&apos;ve learned into your daily life.
-            </p>
-          </div>
-        </div>
+        <ol className="list-decimal pl-6 space-y-4">
+          <li>
+            <strong>Complete a workbook</strong> - Each challenge is unlocked by completing its corresponding workbook.
+          </li>
+          <li>
+            <strong>Take action in the real world</strong> - Challenges require you to apply what you&apos;ve learned to your real financial life.
+          </li>
+          <li>
+            <strong>Track your progress</strong> - Mark your progress as you complete each step of the challenge.
+          </li>
+          <li>
+            <strong>Earn your badge</strong> - Once you complete a challenge, you&apos;ll earn a badge to showcase your achievement.
+          </li>
+          <li>
+            <strong>Build momentum</strong> - Each challenge builds on the previous one, creating a comprehensive wealth-building journey.
+          </li>
+        </ol>
       </div>
     </div>
   );
