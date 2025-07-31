@@ -77,9 +77,9 @@ export default function Assessment() {
     // Show the results
     setShowResults(true);
     
-    // After a delay, redirect to the manifesto page
+    // After a delay, redirect to the manifesto page with flow parameter
     setTimeout(() => {
-      router.push('/manifesto');
+      router.push('/manifesto?flow=assessment');
     }, 8000); // 8 seconds to read the results
   };
 

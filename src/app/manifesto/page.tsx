@@ -1,11 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GatedLayout from '@/app/GatedLayout';
 import SimpleForm from '@/components/SimpleForm';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 export default function Manifesto() {
+  const searchParams = useSearchParams();
+  const [showCommitment, setShowCommitment] = useState(false);
+  
+  useEffect(() => {
+    // Check if the page was accessed from the assessment flow
+    const fromFlow = searchParams.get('flow') === 'assessment';
+    setShowCommitment(fromFlow);
+  }, [searchParams]);
+  
   return (
     <GatedLayout>
       <div className="max-w-6xl mx-auto">
@@ -32,42 +42,44 @@ export default function Manifesto() {
         
         {/* Commented out original manifesto content */}
         
-        <div className="bg-background/20 backdrop-blur-sm rounded-lg p-8 mb-12 border border-accent/30 shadow-lg">
-          <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Affirm Your Commitment</h2>
-          <p className="text-center mb-8 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-            To continue your journey and unlock access to our portal, please affirm your commitment
-            to The Wealth Shift principles by completing the form below.
-          </p>
-          
-          <SimpleForm
-            title="Manifesto Commitment"
-            description="Please affirm your commitment to The Wealth Shift principles to continue your journey."
-            questions={[
-              {
-                id: 'commitment',
-                text: 'I affirm that I have read and commit to the following principles:',
-                type: 'checkbox',
-                options: [
-                  'Intentional Growth: I commit to embracing both comfort and discomfort as teachers on my journey.',
-                  'Community Support: I commit to supporting fellow community members and contributing to collective elevation.',
-                  'Authentic Empowerment: I commit to practices that build genuine confidence and self-awareness.',
-                  'Holistic Prosperity: I commit to nurturing all dimensions of prosperity in balanced harmony.',
-                  'Ethical Impact: I commit to considering the impact of my actions on others and the planet.'
-                ],
-                required: true
-              },
-              {
-                id: 'personal_commitment',
-                text: 'What aspect of The Wealth Shift resonates most with you, and how do you plan to incorporate it into your journey?',
-                type: 'textarea',
-                required: false
-              }
-            ]}
-            submitButtonText="Continue to Portal"
-            redirectUrl="/unlock"
-            className=""
-          />
-        </div>
+        {showCommitment && (
+          <div className="bg-background/20 backdrop-blur-sm rounded-lg p-8 mb-12 border border-accent/30 shadow-lg">
+            <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Affirm Your Commitment</h2>
+            <p className="text-center mb-8 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+              To continue your journey and unlock access to our portal, please affirm your commitment
+              to The Wealth Shift principles by completing the form below.
+            </p>
+            
+            <SimpleForm
+              title="Manifesto Commitment"
+              description="Please affirm your commitment to The Wealth Shift principles to continue your journey."
+              questions={[
+                {
+                  id: 'commitment',
+                  text: 'I affirm that I have read and commit to the following principles:',
+                  type: 'checkbox',
+                  options: [
+                    'Intentional Growth: I commit to embracing both comfort and discomfort as teachers on my journey.',
+                    'Community Support: I commit to supporting fellow community members and contributing to collective elevation.',
+                    'Authentic Empowerment: I commit to practices that build genuine confidence and self-awareness.',
+                    'Holistic Prosperity: I commit to nurturing all dimensions of prosperity in balanced harmony.',
+                    'Ethical Impact: I commit to considering the impact of my actions on others and the planet.'
+                  ],
+                  required: true
+                },
+                {
+                  id: 'personal_commitment',
+                  text: 'What aspect of The Wealth Shift resonates most with you, and how do you plan to incorporate it into your journey?',
+                  type: 'textarea',
+                  required: false
+                }
+              ]}
+              submitButtonText="Continue to Portal"
+              redirectUrl="/unlock"
+              className=""
+            />
+          </div>
+        )}
       </div>
     </GatedLayout>
   );

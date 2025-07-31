@@ -7,6 +7,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SvgAccent from '@/components/SvgAccent';
+import VideoSection from '@/components/VideoSection';
 import { motion } from 'framer-motion';
 
 export default function Home() {
@@ -75,6 +76,9 @@ export default function Home() {
             </svg>
           </motion.div>
         </section>
+        
+        {/* Video Section */}
+        <VideoSection />
         
         {/* Section 2: The Invitation */}
         <motion.section 
@@ -150,8 +154,8 @@ export default function Home() {
                 icon="🔓"
                 title="Step 3: Enter the Portal"
                 description="Get access to workbooks, challenges, and resources based on your assessment results."
-                linkUrl="/portal"
-                linkText="Enter Portal →"
+                linkUrl="/assessment"
+                linkText="Start Assessment →"
                 className="backdrop-blur-sm bg-background/90"
               />
             </motion.div>
