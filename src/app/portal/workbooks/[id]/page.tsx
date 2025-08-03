@@ -131,6 +131,55 @@ export default function WorkbookDetail() {
               </ol>
             </div>
             
+            {workbook.id === 'workbook1' && (
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-4">Daily Exercises</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Link 
+                    href={`/portal/workbooks/${workbook.id}/day/1`}
+                    className="bg-white hover:bg-accent/10 border border-accent/20 rounded-lg p-4 transition-all duration-300 flex items-center"
+                  >
+                    <div className="bg-accent/20 text-accent w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">The Wealth Shift Begins in Your Mind</h3>
+                      <p className="text-sm text-gray-600">Your Mindset, Your Family Beliefs</p>
+                    </div>
+                  </Link>
+                  
+                  <Link 
+                    href={`/portal/workbooks/${workbook.id}/day/2`}
+                    className="bg-white hover:bg-accent/10 border border-accent/20 rounded-lg p-4 transition-all duration-300 flex items-center"
+                  >
+                    <div className="bg-accent/20 text-accent w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">Choosing Empowerment</h3>
+                      <p className="text-sm text-gray-600">Celebrating Progress</p>
+                    </div>
+                  </Link>
+                  
+                  {[3, 4, 5, 6, 7].map((day) => (
+                    <Link 
+                      key={day}
+                      href={`/portal/workbooks/${workbook.id}/day/${day}`}
+                      className="bg-white hover:bg-accent/10 border border-accent/20 rounded-lg p-4 transition-all duration-300 flex items-center opacity-70"
+                    >
+                      <div className="bg-gray-200 text-gray-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">
+                        {day}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">Coming Soon</h3>
+                        <p className="text-sm text-gray-600">Day {day} content</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            
             {!isStarted && (
               <div className="mt-8">
                 <button
