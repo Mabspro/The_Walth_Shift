@@ -22,7 +22,7 @@ const sampleVideos: Video[] = [
     title: 'Understanding Your Money Mindset',
     description: 'Discover how your beliefs about money shape your financial decisions and learn how to shift to an abundance mindset.',
     thumbnailUrl: '/images/video-card1.jpg',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+    videoUrl: 'https://www.youtube.com/embed/8aGhZQkoFbQ', // Example: What is wealth video
     duration: '5:24'
   },
   {
@@ -30,7 +30,7 @@ const sampleVideos: Video[] = [
     title: 'Building Wealth Through Assets',
     description: 'Learn the fundamentals of asset building and how to create passive income streams that work for you.',
     thumbnailUrl: '/images/video-card2.jpg',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+    videoUrl: 'https://www.youtube.com/embed/8aGhZQkoFbQ', // Example: What is wealth video
     duration: '7:15'
   },
   {
@@ -38,7 +38,7 @@ const sampleVideos: Video[] = [
     title: 'Financial Freedom Roadmap',
     description: 'A step-by-step guide to creating your personalized path to financial independence and true wealth.',
     thumbnailUrl: '/images/video-card3.jpg',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+    videoUrl: 'https://www.youtube.com/embed/8aGhZQkoFbQ', // Example: What is wealth video
     duration: '6:42'
   }
 ];

@@ -36,18 +36,18 @@ export default function Portal() {
   return (
     <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-deep-sage">Your Wealth Shift Portal</h1>
-        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-gray-600">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-cream">Your Wealth Shift Portal</h1>
+        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-cream/80">
           Welcome to your personal portal. Explore the resources and tools designed to support your wealth journey.
         </p>
       </div>
       
       <div className="mb-16">
-        <div className="bg-white rounded-lg p-8 mb-8 border border-accent/20 shadow-lg">
+        <div className="bg-gradient-to-br from-sage/10 to-deep-sage/10 rounded-lg p-8 mb-8 border border-accent/30 shadow-lg">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold mb-2 text-deep-sage">Welcome Back!</h2>
-              <p className="mb-0 leading-relaxed text-gray-600">
+              <h2 className="text-2xl font-bold mb-2 text-cream">Welcome Back!</h2>
+              <p className="mb-0 leading-relaxed text-cream/80">
                 {assessmentCompleted 
                   ? "Continue your wealth journey by exploring your personalized recommendations."
                   : "Continue your journey by exploring the different sections of your portal."}
@@ -69,15 +69,15 @@ export default function Portal() {
           <div className="bg-gradient-to-r from-accent/10 to-highlight/10 rounded-lg p-8 mb-8 border border-accent/30 shadow-lg">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-2/3">
-                <h2 className="text-2xl font-bold mb-3 text-deep-sage flex items-center">
+                <h2 className="text-2xl font-bold mb-3 text-cream flex items-center">
                   <span className="text-3xl mr-3">✨</span>
                   Let&apos;s Get to Know You
                 </h2>
-                <p className="mb-4 leading-relaxed text-gray-700 font-medium">
+                <p className="mb-4 leading-relaxed text-cream/90 font-medium">
                   Before you dive into the portal, we&apos;d love to learn just a couple of things about you to create 
                   a personalized experience. This helps us curate the most relevant tools, workbooks, and challenges for your unique journey.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-1">
+                <ul className="text-sm text-cream/80 space-y-1">
                   <li>• Customized content recommendations</li>
                   <li>• Personalized resource suggestions</li>
                   <li>• Tailored portal experience</li>
@@ -90,7 +90,7 @@ export default function Portal() {
                 >
                   Get Started
                 </Link>
-                <p className="text-xs text-gray-500 mt-2">Just a few questions</p>
+                <p className="text-xs text-cream/60 mt-2">Just a few questions</p>
               </div>
             </div>
           </div>
@@ -105,23 +105,23 @@ export default function Portal() {
                   {assessmentResult?.wealthShiftLevel === WealthShiftLevel.Pathwalker && <span className="text-4xl">🏞️</span>}
                   {assessmentResult?.wealthShiftLevel === WealthShiftLevel.Oracle && <span className="text-4xl">🔮</span>}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-deep-sage">
+                <h3 className="text-xl font-bold mb-2 text-cream">
                   {assessmentResult?.wealthShiftLevel}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-cream/80">
                   Mindset: {assessmentResult?.mindsetType}
                 </p>
               </div>
-              <div className="md:w-2/3 md:pl-8 md:border-l border-accent/20">
-                <h2 className="text-2xl font-bold mb-3 text-deep-sage">Your Personalized Journey</h2>
-                <p className="mb-4 leading-relaxed text-gray-700">
+              <div className="md:w-2/3 md:pl-8 md:border-l border-accent/30">
+                <h2 className="text-2xl font-bold mb-3 text-cream">Your Personalized Journey</h2>
+                <p className="mb-4 leading-relaxed text-cream/90">
                   Based on your assessment, we&apos;ve curated the following workbooks to help you on your wealth journey:
                 </p>
                 <ul className="space-y-3 mb-6">
                   {recommendedWorkbooks.map((workbook) => (
                     <li key={workbook.id} className="flex items-center">
                       <span className="text-2xl mr-3">{workbook.icon}</span>
-                      <span className="font-medium text-gray-700">{workbook.title} - <span className="text-sm text-gray-500">{workbook.description}</span></span>
+                      <span className="font-medium text-cream/90">{workbook.title} - <span className="text-sm text-cream/70">{workbook.description}</span></span>
                     </li>
                   ))}
                 </ul>
@@ -160,11 +160,11 @@ export default function Portal() {
           linkText="Visit Marketplace"
         />
         <Card
-          icon="💝"
-          title="Giving"
-          description="Find opportunities to contribute and give back to the community."
-          linkUrl="/portal/giving"
-          linkText="Explore Giving"
+          icon="📦"
+          title="Packages"
+          description="Explore our transformation packages and choose your path."
+          linkUrl="/portal/packages"
+          linkText="View Packages"
         />
         <Card
           icon="🎉"
@@ -176,17 +176,17 @@ export default function Portal() {
         <Card
           icon="👥"
           title="Community"
-          description="Connect with fellow members on the wealth journey."
-          linkUrl="#"
-          linkText="Coming Soon"
+          description="Connect with fellow members in WhatsApp Pods and The Shifters Community."
+          linkUrl="/portal/community"
+          linkText="Join Community"
         />
       </div>
       
-      <div className="bg-white rounded-lg shadow-lg p-8 mb-16 border border-accent/20">
-        <h2 className="text-2xl font-bold mb-4 text-deep-sage">Your Progress</h2>
+      <div className="bg-gradient-to-br from-sage/10 to-deep-sage/10 rounded-lg shadow-lg p-8 mb-16 border border-accent/30">
+        <h2 className="text-2xl font-bold mb-4 text-cream">Your Progress</h2>
         <div className="mb-6">
           <div className="flex justify-between mb-2">
-            <span className="font-semibold text-gray-700">Journey Completion</span>
+            <span className="font-semibold text-cream/90">Journey Completion</span>
             <span className="text-accent font-semibold">{assessmentCompleted ? "25%" : "0%"}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -197,36 +197,36 @@ export default function Portal() {
           </div>
         </div>
         
-        <h3 className="text-xl font-bold mb-3 text-deep-sage">Recent Activity</h3>
+        <h3 className="text-xl font-bold mb-3 text-cream">Recent Activity</h3>
         <ul className="space-y-3">
           {assessmentCompleted && (
             <>
-              <li className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-100">
-                <span className="text-gray-700">Completed <span className="text-accent font-semibold">Assessment</span></span>
-                <span className="text-sm text-gray-500">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
+                <span className="text-cream/90">Completed <span className="text-accent font-semibold">Assessment</span></span>
+                <span className="text-sm text-cream/60">Just now</span>
               </li>
-              <li className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-100">
-                <span className="text-gray-700">Affirmed <span className="text-accent font-semibold">Manifesto</span></span>
-                <span className="text-sm text-gray-500">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
+                <span className="text-cream/90">Affirmed <span className="text-accent font-semibold">Manifesto</span></span>
+                <span className="text-sm text-cream/60">Just now</span>
               </li>
-              <li className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-100">
-                <span className="text-gray-700">Watched <span className="text-accent font-semibold">Welcome Video</span></span>
-                <span className="text-sm text-gray-500">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
+                <span className="text-cream/90">Watched <span className="text-accent font-semibold">Welcome Video</span></span>
+                <span className="text-sm text-cream/60">Just now</span>
               </li>
             </>
           )}
           {!assessmentCompleted && (
-            <li className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-100">
-              <span className="text-gray-700">No activity yet</span>
-              <span className="text-sm text-gray-500">-</span>
+            <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
+              <span className="text-cream/90">No activity yet</span>
+              <span className="text-sm text-cream/60">-</span>
             </li>
           )}
         </ul>
       </div>
       
       <div className="text-center mb-16">
-        <h2 className="text-2xl font-bold mb-4 text-deep-sage">Need Help?</h2>
-        <p className="mb-6 leading-relaxed font-medium text-gray-600">
+        <h2 className="text-2xl font-bold mb-4 text-cream">Need Help?</h2>
+        <p className="mb-6 leading-relaxed font-medium text-cream/80">
           If you have any questions or need assistance, our team is here to help.
         </p>
         <a 

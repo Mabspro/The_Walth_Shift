@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class', // Enable class-based dark mode
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,15 +9,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'rich-green': '#052e26',
-        'background': '#052e26',
-        'foreground': '#f5f5f5',
-        'accent': '#d4a850',
-        'highlight': '#e6c17a',
-        'cream': '#f5f5f0',
+        'rich-green': '#0F3D20',
+        'deep-sage': '#2C4024',
+        'sage': '#4A6741',
+        'cream': '#F5F1E8',
+        'earthy-gold': '#D4A76A',
+        'vibrant-orange': '#E55812',
+        'soft-sage': '#E6F1E9',
+        'muted-sage': '#DDEAD9',
+        'subheading': '#B6D1C1',
+        'soft-gold': '#F6D07C',
+        'warm-gold': '#F4AE53',
+        'earth-tone': '#C6AF6F',
+      },
+      backgroundColor: {
+        'background': '#0F3D20',
+        'foreground': '#F5F1E8',
+      },
+      textColor: {
+        'background': '#0F3D20',
+        'foreground': '#F5F1E8',
       },
       backgroundImage: {
-        'gradient-bg': 'linear-gradient(to bottom, #0f3f2f, #052e26)',
+        'gradient-bg': 'linear-gradient(135deg, #0F3D20 0%, #4A6741 100%)',
       },
     },
   },
