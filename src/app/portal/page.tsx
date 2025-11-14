@@ -36,14 +36,14 @@ export default function Portal() {
   return (
     <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-portal-text-primary">Your Wealth Shift Portal</h1>
-        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-portal-text-secondary">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 wealth-title">Your Wealth Shift Portal</h1>
+        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-portal-text-secondary embossed-text">
           Welcome to your personal portal. Explore the resources and tools designed to support your wealth journey.
         </p>
       </div>
       
       <div className="mb-16">
-        <div className="bg-portal-beige-card rounded-lg p-8 mb-8 border border-portal-border shadow-lg">
+        <div className="depth-card rounded-lg p-8 mb-8 border border-portal-border transition-all duration-300">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold mb-2 text-portal-text-primary">Welcome Back!</h2>
@@ -56,7 +56,7 @@ export default function Portal() {
             <div className="mt-4 md:mt-0">
               <Link 
                 href="/portal/workbooks" 
-                className="px-6 py-3 bg-accent hover:bg-highlight text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
+                className="luxury-button px-6 py-3 text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block"
               >
                 Start Today&apos;s Activity
               </Link>
@@ -66,7 +66,7 @@ export default function Portal() {
         
         {!assessmentCompleted ? (
           // Personalization Call-to-Action Card (shown if assessment not completed)
-          <div className="bg-portal-accent-subtle rounded-lg p-8 mb-8 border border-portal-border shadow-lg">
+          <div className="inset-section rounded-lg p-8 mb-8 border border-portal-border shadow-lg">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-2/3">
                 <h2 className="text-2xl font-bold mb-3 text-portal-text-primary flex items-center">
@@ -86,7 +86,7 @@ export default function Portal() {
               <div className="mt-6 md:mt-0 md:w-1/3 text-center">
                 <Link 
                   href="/assessment" 
-                  className="px-8 py-4 bg-accent hover:bg-highlight text-portal-beige font-bold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_20px_rgba(212,168,80,0.6)] hover:-translate-y-1 text-lg"
+                  className="luxury-button px-8 py-4 text-portal-beige font-bold rounded-md transition-all duration-300 inline-block text-lg"
                 >
                   Get Started
                 </Link>
@@ -182,7 +182,7 @@ export default function Portal() {
         />
       </div>
       
-      <div className="bg-portal-beige-card rounded-lg shadow-lg p-8 mb-16 border border-portal-border">
+        <div className="depth-card rounded-lg p-8 mb-16 border border-portal-border transition-all duration-300">
         <h2 className="text-2xl font-bold mb-4 text-portal-text-primary">Your Progress</h2>
         <div className="mb-6">
           <div className="flex justify-between mb-2">
@@ -231,7 +231,7 @@ export default function Portal() {
         </p>
         <a 
           href="mailto:support@thewealthshift.com" 
-          className="px-6 py-3 bg-accent hover:bg-highlight text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
+          className="luxury-button px-6 py-3 text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block"
         >
           Contact Support
         </a>

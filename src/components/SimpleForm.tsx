@@ -115,11 +115,11 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
 
   return (
     <div className={`w-full max-w-6xl mx-auto my-8 ${className}`}>
-      <div className="bg-background/20 backdrop-blur-sm rounded-lg p-8 border border-accent/30 shadow-lg">
-        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{title}</h2>
+      <div className="bg-portal-beige-card rounded-lg p-8 border border-portal-border shadow-lg">
+        <h2 className="text-2xl font-bold mb-2 text-portal-text-primary">{title}</h2>
         
         {description && (
-          <p className="mb-6 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+          <p className="mb-6 leading-relaxed text-portal-text-secondary">
             {description}
           </p>
         )}
@@ -129,8 +129,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
             <div key={question.id} className="space-y-2">
               <label 
                 htmlFor={question.id} 
-                className="block font-medium"
-                style={{ color: 'var(--subheading)' }}
+                className="block font-medium text-portal-text-primary"
               >
                 {question.text}
                 {question.required && <span className="text-red-400 ml-1">*</span>}
@@ -142,8 +141,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
                   type="text"
                   value={formData[question.id] as string || ''}
                   onChange={e => handleInputChange(question.id, e.target.value)}
-                  className="w-full px-4 py-2 bg-background/30 backdrop-blur-sm rounded-md border border-accent/30 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                  style={{ color: 'var(--soft-sage)' }}
+                  className="w-full px-4 py-2 bg-portal-beige-light rounded-md border border-portal-border focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent text-portal-text-primary"
                 />
               )}
               
@@ -152,8 +150,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
                   id={question.id}
                   value={formData[question.id] as string || ''}
                   onChange={e => handleInputChange(question.id, e.target.value)}
-                  className="w-full px-4 py-2 bg-background/30 backdrop-blur-sm rounded-md border border-accent/30 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                  style={{ color: 'var(--soft-sage)' }}
+                  className="w-full px-4 py-2 bg-portal-beige-light rounded-md border border-portal-border focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent text-portal-text-primary"
                   rows={4}
                 />
               )}
@@ -173,8 +170,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
                       />
                       <label 
                         htmlFor={`${question.id}-${option}`}
-                        className="opacity-90"
-                        style={{ color: 'var(--soft-sage)' }}
+                        className="text-portal-text-secondary"
                       >
                         {option}
                       </label>
@@ -217,11 +213,11 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-all duration-300 flex items-center gap-2 hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-8 py-3 bg-accent hover:bg-highlight text-portal-beige font-semibold rounded-md transition-all duration-300 flex items-center gap-2 hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-portal-beige" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>

@@ -20,8 +20,8 @@ function ManifestoContent() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>The Wealth Shift Manifesto</h1>
-        <p className="text-xl font-medium opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-portal-text-primary">The Wealth Shift Manifesto</h1>
+        <p className="text-xl font-medium leading-relaxed text-portal-text-secondary">
           Our core values and principles that guide our community and journey.
         </p>
       </div>
@@ -43,9 +43,9 @@ function ManifestoContent() {
       {/* Commented out original manifesto content */}
       
       {showCommitment && (
-        <div className="bg-background/20 backdrop-blur-sm rounded-lg p-8 mb-12 border border-accent/30 shadow-lg">
-          <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: 'var(--soft-gold)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Affirm Your Commitment</h2>
-          <p className="text-center mb-8 opacity-90 leading-relaxed" style={{ color: 'var(--soft-sage)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+        <div className="bg-portal-beige-card rounded-lg p-8 mb-12 border border-portal-border shadow-lg">
+          <h2 className="text-2xl font-bold mb-4 text-center text-portal-text-primary">Affirm Your Commitment</h2>
+          <p className="text-center mb-8 leading-relaxed text-portal-text-secondary">
             To continue your journey and unlock access to our portal, please affirm your commitment
             to The Wealth Shift principles by completing the form below.
           </p>

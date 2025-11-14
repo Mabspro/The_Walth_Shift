@@ -41,11 +41,84 @@
   --portal-beige-bg: #F5EFE7;
   --portal-beige-light: #FAF7F2;
   --portal-beige-card: #EEEBE5;
-  --portal-text-primary: #2C3E2A;
-  --portal-text-secondary: #5A6856;
-  --portal-text-muted: #8B9488;
+  --portal-text-primary: #1A2418;
+  --portal-text-secondary: #3D4A3B;
+  --portal-text-muted: #6B7668;
   --portal-border: #D4C9BD;
   --portal-accent-subtle: #E8DDD0;
+}
+
+/* Luxury text effects for wealth theme */
+.wealth-title {
+  background: linear-gradient(135deg, #C49550 0%, #D4A76A 30%, #E8C488 50%, #D4A76A 70%, #B8935C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(196, 149, 80, 0.4);
+  filter: drop-shadow(0 2px 4px rgba(196, 149, 80, 0.3)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.depth-card {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #EEEBE5 0%, #F5F1EA 100%);
+}
+
+.depth-card:hover {
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    0 16px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.luxury-button {
+  background: linear-gradient(135deg, #C49550 0%, #D4A76A 30%, #E8C488 50%, #D4A76A 70%, #C49550 100%);
+  box-shadow: 
+    0 4px 12px rgba(196, 149, 80, 0.5),
+    0 2px 4px rgba(196, 149, 80, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.luxury-button:hover::before {
+  left: 100%;
+}
+
+.luxury-button:hover {
+  background: linear-gradient(135deg, #D4A76A 0%, #E8C488 30%, #F0D69E 50%, #E8C488 70%, #D4A76A 100%);
+  box-shadow: 
+    0 6px 16px rgba(212, 167, 106, 0.6),
+    0 4px 8px rgba(212, 167, 106, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.embossed-text {
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+.inset-section {
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(180deg, #E8E4DC 0%, #F0ECE4 100%);
 }
 
 @media (prefers-color-scheme: dark) {
