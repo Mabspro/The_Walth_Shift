@@ -21,6 +21,15 @@ module.exports = {
         'soft-gold': '#F6D07C',
         'warm-gold': '#F4AE53',
         'earth-tone': '#C6AF6F',
+        // Portal Beige Theme
+        'portal-beige': '#F5EFE7',
+        'portal-beige-light': '#FAF7F2',
+        'portal-beige-card': '#EEEBE5',
+        'portal-text-primary': '#2C3E2A',
+        'portal-text-secondary': '#5A6856',
+        'portal-text-muted': '#8B9488',
+        'portal-border': '#D4C9BD',
+        'portal-accent-subtle': '#E8DDD0',
       },
       backgroundColor: {
         'background': '#0F3D20',

@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div 
-      className={`rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 border border-accent/30 bg-gradient-to-br from-sage/10 to-deep-sage/10 ${className}`}
+      className={`rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 border border-portal-border bg-portal-beige-card ${className}`}
     >
       {imageUrl && (
         <div className="relative w-full h-48 mb-4 overflow-hidden rounded-t-lg">
@@ -44,8 +44,8 @@ const Card: React.FC<CardProps> = ({
             {icon}
           </div>
         )}
-        <h3 className="text-xl font-bold mb-2 text-cream">{title}</h3>
-        {description && <p className="mb-4 leading-relaxed font-medium text-cream/80">{description}</p>}
+        <h3 className="text-xl font-bold mb-2 text-portal-text-primary">{title}</h3>
+        {description && <p className="mb-4 leading-relaxed font-medium text-portal-text-secondary">{description}</p>}
         {children}
         {linkUrl && (
           <div className="mt-4">

@@ -36,18 +36,18 @@ export default function Portal() {
   return (
     <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-cream">Your Wealth Shift Portal</h1>
-        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-cream/80">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-portal-text-primary">Your Wealth Shift Portal</h1>
+        <p className="text-xl max-w-3xl mx-auto font-medium leading-relaxed text-portal-text-secondary">
           Welcome to your personal portal. Explore the resources and tools designed to support your wealth journey.
         </p>
       </div>
       
       <div className="mb-16">
-        <div className="bg-gradient-to-br from-sage/10 to-deep-sage/10 rounded-lg p-8 mb-8 border border-accent/30 shadow-lg">
+        <div className="bg-portal-beige-card rounded-lg p-8 mb-8 border border-portal-border shadow-lg">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold mb-2 text-cream">Welcome Back!</h2>
-              <p className="mb-0 leading-relaxed text-cream/80">
+              <h2 className="text-2xl font-bold mb-2 text-portal-text-primary">Welcome Back!</h2>
+              <p className="mb-0 leading-relaxed text-portal-text-secondary">
                 {assessmentCompleted 
                   ? "Continue your wealth journey by exploring your personalized recommendations."
                   : "Continue your journey by exploring the different sections of your portal."}
@@ -56,7 +56,7 @@ export default function Portal() {
             <div className="mt-4 md:mt-0">
               <Link 
                 href="/portal/workbooks" 
-                className="px-6 py-3 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
+                className="px-6 py-3 bg-accent hover:bg-highlight text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
               >
                 Start Today&apos;s Activity
               </Link>
@@ -66,18 +66,18 @@ export default function Portal() {
         
         {!assessmentCompleted ? (
           // Personalization Call-to-Action Card (shown if assessment not completed)
-          <div className="bg-gradient-to-r from-accent/10 to-highlight/10 rounded-lg p-8 mb-8 border border-accent/30 shadow-lg">
+          <div className="bg-portal-accent-subtle rounded-lg p-8 mb-8 border border-portal-border shadow-lg">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-2/3">
-                <h2 className="text-2xl font-bold mb-3 text-cream flex items-center">
+                <h2 className="text-2xl font-bold mb-3 text-portal-text-primary flex items-center">
                   <span className="text-3xl mr-3">✨</span>
                   Let&apos;s Get to Know You
                 </h2>
-                <p className="mb-4 leading-relaxed text-cream/90 font-medium">
+                <p className="mb-4 leading-relaxed text-portal-text-secondary font-medium">
                   Before you dive into the portal, we&apos;d love to learn just a couple of things about you to create 
                   a personalized experience. This helps us curate the most relevant tools, workbooks, and challenges for your unique journey.
                 </p>
-                <ul className="text-sm text-cream/80 space-y-1">
+                <ul className="text-sm text-portal-text-secondary space-y-1">
                   <li>• Customized content recommendations</li>
                   <li>• Personalized resource suggestions</li>
                   <li>• Tailored portal experience</li>
@@ -86,11 +86,11 @@ export default function Portal() {
               <div className="mt-6 md:mt-0 md:w-1/3 text-center">
                 <Link 
                   href="/assessment" 
-                  className="px-8 py-4 bg-accent hover:bg-highlight text-background font-bold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_20px_rgba(212,168,80,0.6)] hover:-translate-y-1 text-lg"
+                  className="px-8 py-4 bg-accent hover:bg-highlight text-portal-beige font-bold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_20px_rgba(212,168,80,0.6)] hover:-translate-y-1 text-lg"
                 >
                   Get Started
                 </Link>
-                <p className="text-xs text-cream/60 mt-2">Just a few questions</p>
+                <p className="text-xs text-portal-text-muted mt-2">Just a few questions</p>
               </div>
             </div>
           </div>
@@ -182,14 +182,14 @@ export default function Portal() {
         />
       </div>
       
-      <div className="bg-gradient-to-br from-sage/10 to-deep-sage/10 rounded-lg shadow-lg p-8 mb-16 border border-accent/30">
-        <h2 className="text-2xl font-bold mb-4 text-cream">Your Progress</h2>
+      <div className="bg-portal-beige-card rounded-lg shadow-lg p-8 mb-16 border border-portal-border">
+        <h2 className="text-2xl font-bold mb-4 text-portal-text-primary">Your Progress</h2>
         <div className="mb-6">
           <div className="flex justify-between mb-2">
-            <span className="font-semibold text-cream/90">Journey Completion</span>
+            <span className="font-semibold text-portal-text-primary">Journey Completion</span>
             <span className="text-accent font-semibold">{assessmentCompleted ? "25%" : "0%"}</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div className="w-full bg-portal-border rounded-full h-2.5">
             <div 
               className="bg-accent h-2.5 rounded-full transition-all duration-1000" 
               style={{ width: assessmentCompleted ? '25%' : '0%' }}
@@ -197,41 +197,41 @@ export default function Portal() {
           </div>
         </div>
         
-        <h3 className="text-xl font-bold mb-3 text-cream">Recent Activity</h3>
+        <h3 className="text-xl font-bold mb-3 text-portal-text-primary">Recent Activity</h3>
         <ul className="space-y-3">
           {assessmentCompleted && (
             <>
-              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
-                <span className="text-cream/90">Completed <span className="text-accent font-semibold">Assessment</span></span>
-                <span className="text-sm text-cream/60">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-portal-accent-subtle rounded-md border border-portal-border">
+                <span className="text-portal-text-secondary">Completed <span className="text-accent font-semibold">Assessment</span></span>
+                <span className="text-sm text-portal-text-muted">Just now</span>
               </li>
-              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
-                <span className="text-cream/90">Affirmed <span className="text-accent font-semibold">Manifesto</span></span>
-                <span className="text-sm text-cream/60">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-portal-accent-subtle rounded-md border border-portal-border">
+                <span className="text-portal-text-secondary">Affirmed <span className="text-accent font-semibold">Manifesto</span></span>
+                <span className="text-sm text-portal-text-muted">Just now</span>
               </li>
-              <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
-                <span className="text-cream/90">Watched <span className="text-accent font-semibold">Welcome Video</span></span>
-                <span className="text-sm text-cream/60">Just now</span>
+              <li className="flex items-center justify-between p-3 bg-portal-accent-subtle rounded-md border border-portal-border">
+                <span className="text-portal-text-secondary">Watched <span className="text-accent font-semibold">Welcome Video</span></span>
+                <span className="text-sm text-portal-text-muted">Just now</span>
               </li>
             </>
           )}
           {!assessmentCompleted && (
-            <li className="flex items-center justify-between p-3 bg-deep-sage/20 rounded-md border border-accent/20">
-              <span className="text-cream/90">No activity yet</span>
-              <span className="text-sm text-cream/60">-</span>
+            <li className="flex items-center justify-between p-3 bg-portal-accent-subtle rounded-md border border-portal-border">
+              <span className="text-portal-text-secondary">No activity yet</span>
+              <span className="text-sm text-portal-text-muted">-</span>
             </li>
           )}
         </ul>
       </div>
       
       <div className="text-center mb-16">
-        <h2 className="text-2xl font-bold mb-4 text-cream">Need Help?</h2>
-        <p className="mb-6 leading-relaxed font-medium text-cream/80">
+        <h2 className="text-2xl font-bold mb-4 text-portal-text-primary">Need Help?</h2>
+        <p className="mb-6 leading-relaxed font-medium text-portal-text-secondary">
           If you have any questions or need assistance, our team is here to help.
         </p>
         <a 
           href="mailto:support@thewealthshift.com" 
-          className="px-6 py-3 bg-accent hover:bg-highlight text-background font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
+          className="px-6 py-3 bg-accent hover:bg-highlight text-portal-beige font-semibold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_15px_rgba(212,168,80,0.5)] hover:-translate-y-1"
         >
           Contact Support
         </a>
