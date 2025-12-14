@@ -20,9 +20,18 @@ This document provides instructions for deploying The Wealth Shift website to Ve
 
 For the current implementation of The Wealth Shift, you'll need the following environment variables in your Vercel project:
 
+### Required Variables
+
+| Variable Name | Description | Value | Required |
+|---------------|-------------|-------|----------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL | `https://sjwuxdwcvtmrbbizjshy.supabase.co` | **Yes** |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anonymous/public key | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` | **Yes** |
+
+### Optional Variables
+
 | Variable Name | Description | Example Value | Required |
 |---------------|-------------|--------------|----------|
-| `NEXT_PUBLIC_SITE_URL` | The base URL of your deployed site | `https://the-wealth-shift.vercel.app` | Yes |
+| `NEXT_PUBLIC_SITE_URL` | The base URL of your deployed site | `https://the-wealth-shift.vercel.app` | No |
 | `NEXT_PUBLIC_TALLY_API_KEY` | API key for Tally forms integration (if using Tally) | `your-tally-api-key` | No* |
 
 *Only required if you implement the actual Tally forms integration as described in the TALLY_FORM_SETUP.md document.
@@ -33,9 +42,9 @@ As the project grows, you might need to add these environment variables:
 
 | Variable Name | Description | When Needed |
 |---------------|-------------|------------|
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-side only) | When implementing admin features |
 | `NEXT_PUBLIC_GA_TRACKING_ID` | Google Analytics tracking ID | When implementing analytics |
 | `NEXT_PUBLIC_MAILCHIMP_URL` | Mailchimp form endpoint | When adding email newsletter |
-| `DATABASE_URL` | Connection string for database | When adding user authentication |
 | `AUTH_SECRET` | Secret key for authentication | When adding user authentication |
 
 ## Build and Deployment Settings

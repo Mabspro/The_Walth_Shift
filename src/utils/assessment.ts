@@ -419,3 +419,97 @@ export const getAssessmentResult = (): AssessmentResult | null => {
 export const hasCompletedAssessment = (): boolean => {
   return getAssessmentResult() !== null;
 };
+
+/**
+ * Save assessment result to Supabase database
+ * This function saves both to localStorage (for immediate access) and Supabase (for persistence)
+ */
+export const saveAssessmentToDatabase = async (
+  email: string,
+  fullName: string,
+  phone: string | undefined,
+  answers: AssessmentAnswer[],
+  result: AssessmentResult
+): Promise<{ success: boolean; error?: string }> => {
+  // First, save to localStorage for immediate access
+  saveAssessmentResult(result);
+  localStorage.setItem('wealthShiftEmail', email);
+  localStorage.setItem('wealthShiftName', fullName);
+
+  // Then try to save to Supabase
+  try {
+    const { createClient } = await import('@/utils/supabase/client');
+    const supabase = createClient();
+
+    // Get client IP and user agent
+    const ipAddress = typeof window !== 'undefined' ? await getClientIP() : null;
+    const userAgent = typeof window !== 'undefined' ? navigator.userAgent : null;
+
+    // Prepare responses data
+    const responsesData = answers.map(answer => ({
+      questionId: answer.questionId,
+      answer: answer.answer,
+      score: answer.score
+    }));
+
+    // Insert assessment response
+    const { error: assessmentError } = await supabase
+      .from('assessment_responses')
+      .insert({
+        email,
+        full_name: fullName,
+        phone: phone || null,
+        wealth_shift_level: result.wealthShiftLevel,
+        mindset_type: result.mindsetType,
+        total_score: result.totalScore,
+        responses: responsesData,
+        ip_address: ipAddress,
+        user_agent: userAgent
+      });
+
+    if (assessmentError) {
+      console.error('Error saving assessment to database:', assessmentError);
+      // Don't fail the whole process if database save fails
+      return { success: false, error: assessmentError.message };
+    }
+
+    // Also save to email_subscribers (upsert to avoid duplicates)
+    const { error: subscriberError } = await supabase
+      .from('email_subscribers')
+      .upsert({
+        email,
+        full_name: fullName,
+        source: 'assessment',
+        status: 'active'
+      }, {
+        onConflict: 'email'
+      });
+
+    if (subscriberError) {
+      console.error('Error saving subscriber:', subscriberError);
+      // This is non-critical, so we continue
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error in saveAssessmentToDatabase:', error);
+    // Return success anyway since localStorage save worked
+    return { success: true, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+};
+
+/**
+ * Get client IP address (simplified version)
+ * In production, you might want to use a service or API route
+ */
+async function getClientIP(): Promise<string | null> {
+  try {
+    // Try to get IP from a service (optional)
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip || null;
+  } catch {
+    // If that fails, return null
+    return null;
+  }
+}

@@ -7,6 +7,7 @@ import ModalAssessment from '@/components/ModalAssessment';
 import { 
   calculateAssessmentResult, 
   saveAssessmentResult,
+  saveAssessmentToDatabase,
   AssessmentAnswer,
   getPersonalizedMessage,
   getMindsetMessage,
@@ -20,16 +21,12 @@ export default function Assessment() {
   const [showModal, setShowModal] = useState(false);
   const [assessmentResult, setAssessmentResult] = useState<ReturnType<typeof calculateAssessmentResult> | null>(null);
 
-  const handleAssessmentComplete = (answers: AssessmentAnswer[], email: string, fullName: string) => {
+  const handleAssessmentComplete = async (answers: AssessmentAnswer[], email: string, fullName: string, phone?: string) => {
     // Calculate the assessment result
     const result = calculateAssessmentResult(answers);
     
-    // Save the result to localStorage
-    saveAssessmentResult(result);
-    
-    // Store the email and name separately
-    localStorage.setItem('wealthShiftEmail', email);
-    localStorage.setItem('wealthShiftName', fullName);
+    // Save to both localStorage and Supabase
+    await saveAssessmentToDatabase(email, fullName, phone, answers, result);
     
     // Close modal and show results
     setShowModal(false);
@@ -48,53 +45,52 @@ export default function Assessment() {
         {!showResults ? (
           <>
             <div className="text-center mb-12 mt-16">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 wealth-title">The Wealth Shift Assessment</h1>
-              <p className="text-xl font-medium leading-relaxed text-portal-text-secondary embossed-text">
-                Discover where you are on your wealth journey and get personalized recommendations.
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 wealth-title">Start Your Wealth Shift</h1>
+              <p className="text-xl font-medium leading-relaxed text-portal-text-secondary embossed-text mb-4">
+                A free 5-minute financial test to help you understand where you stand, who you are with money, and what your next step should be.
+              </p>
+              <p className="text-lg italic leading-relaxed text-portal-text-secondary">
+                Because every woman deserves clarity, confidence, and a path that finally makes sense.
               </p>
             </div>
             
             <div className="depth-card rounded-lg p-8 mb-8 border border-portal-border">
-              <h2 className="text-2xl font-bold mb-4 text-portal-text-primary">✨ A Note Before You Begin</h2>
-              <p className="mb-4 leading-relaxed text-portal-text-secondary">
-                When I first came to the U.S., I didn&apos;t know how the money system worked — credit, retirement, assets. 
-                And I carried shame for not knowing. But over time, I realized: most women were never truly taught either.
-              </p>
-              <p className="mb-4 leading-relaxed text-portal-text-secondary">
-                That&apos;s why I created The Wealth Shift — to change that.
-              </p>
-              <div className="border-t border-portal-border my-6"></div>
-              <h3 className="text-xl font-bold mb-3 text-portal-text-primary">📝 What This Test Will Do</h3>
-              <p className="mb-3 leading-relaxed text-portal-text-secondary">
-                This isn&apos;t a pass or fail. It&apos;s a fresh start.
-              </p>
-              <p className="mb-3 leading-relaxed text-portal-text-secondary">
-                It will help you:
-              </p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li className="leading-relaxed text-portal-text-secondary">See where you are now</li>
-                <li className="leading-relaxed text-portal-text-secondary">Uncover any mindset blocks</li>
-                <li className="leading-relaxed text-portal-text-secondary">Know exactly what to do next</li>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start">
+                  <span className="text-2xl mr-3 flex-shrink-0">✨</span>
+                  <span className="leading-relaxed text-portal-text-secondary text-lg">
+                    See your true starting point — without shame, pressure, or judgment.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-2xl mr-3 flex-shrink-0">✨</span>
+                  <span className="leading-relaxed text-portal-text-secondary text-lg">
+                    Discover your Wealth Shift Archetype — the money identity shaping your decisions.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-2xl mr-3 flex-shrink-0">✨</span>
+                  <span className="leading-relaxed text-portal-text-secondary text-lg">
+                    Get your personalized roadmap — clear, simple steps for your financial rise.
+                  </span>
+                </li>
               </ul>
-              <p className="italic leading-relaxed text-portal-text-secondary">
-                💬 Some questions are U.S.-based. If they don&apos;t apply, skip them. You&apos;re still shifting.
-              </p>
-              <p className="mt-4 font-medium text-accent">
-                You&apos;re not behind. You&apos;re just beginning.
-              </p>
               
               <div className="mt-8 text-center">
                 <button
                   onClick={() => setShowModal(true)}
                   className="luxury-button px-8 py-4 text-portal-beige font-semibold rounded-lg transition-all duration-300 inline-flex items-center gap-3 text-lg"
                 >
-                  Start Assessment
+                  Start My Test
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
                 <p className="mt-4 text-sm text-portal-text-muted">
-                  ⏱️ Takes about 3-5 minutes
+                  Takes less than 5 minutes. Your full results will be sent to your email.
+                </p>
+                <p className="mt-3 text-sm italic text-portal-text-muted">
+                  &ldquo;This is where my own Wealth Shift began.&rdquo; — Beryl
                 </p>
               </div>
             </div>
