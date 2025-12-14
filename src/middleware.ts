@@ -27,40 +27,47 @@ export async function middleware(request: NextRequest) {
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
         const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
         
-        if (supabaseUrl && supabaseAnonKey && supabaseAnonKey !== 'your-anon-key-here') {
-            const supabase = createServerClient(
-                supabaseUrl,
-                supabaseAnonKey,
-                {
-                    cookies: {
-                        getAll() {
-                            return request.cookies.getAll()
-                        },
-                        setAll(cookiesToSet) {
-                            cookiesToSet.forEach(({ name, value }) =>
-                                request.cookies.set(name, value)
-                            )
-                            response = NextResponse.next({
-                                request: {
-                                    headers: request.headers,
-                                },
-                            })
-                            cookiesToSet.forEach(({ name, value, options }) =>
-                                response.cookies.set(name, value, options)
-                            )
-                        },
+        // Always check authentication for portal/admin routes
+        // If Supabase is not configured, still redirect to signin for security
+        if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey === 'your-anon-key-here') {
+            // Supabase not configured - redirect to signin to be safe
+            const signInUrl = new URL('/signin', request.url)
+            signInUrl.searchParams.set('redirect', pathname)
+            return NextResponse.redirect(signInUrl)
+        }
+
+        const supabase = createServerClient(
+            supabaseUrl,
+            supabaseAnonKey,
+            {
+                cookies: {
+                    getAll() {
+                        return request.cookies.getAll()
                     },
-                }
-            )
-            
-            const { data: { user } } = await supabase.auth.getUser()
-            
-            // If not authenticated, redirect to signin
-            if (!user) {
-                const signInUrl = new URL('/signin', request.url)
-                signInUrl.searchParams.set('redirect', pathname)
-                return NextResponse.redirect(signInUrl)
+                    setAll(cookiesToSet) {
+                        cookiesToSet.forEach(({ name, value }) =>
+                            request.cookies.set(name, value)
+                        )
+                        response = NextResponse.next({
+                            request: {
+                                headers: request.headers,
+                            },
+                        })
+                        cookiesToSet.forEach(({ name, value, options }) =>
+                            response.cookies.set(name, value, options)
+                        )
+                    },
+                },
             }
+        )
+        
+        const { data: { user }, error } = await supabase.auth.getUser()
+        
+        // If not authenticated or error getting user, redirect to signin
+        if (!user || error) {
+            const signInUrl = new URL('/signin', request.url)
+            signInUrl.searchParams.set('redirect', pathname)
+            return NextResponse.redirect(signInUrl)
         }
     }
     

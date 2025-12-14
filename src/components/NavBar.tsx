@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { getCurrentUser, signOut } from '@/utils/auth';
+import { getCurrentUser, signOut, isAdmin } from '@/utils/auth';
 
 interface NavBarProps {
   isPortal?: boolean;
@@ -13,13 +13,27 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false }) => {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdminUser, setIsAdminUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function checkAuth() {
-      const user = await getCurrentUser();
-      setIsAuthenticated(!!user);
-      setIsLoading(false);
+      try {
+        const user = await getCurrentUser();
+        setIsAuthenticated(!!user);
+        
+        // Check if user is admin
+        if (user) {
+          const admin = await isAdmin();
+          setIsAdminUser(admin);
+        }
+      } catch (error) {
+        console.error('Error checking auth:', error);
+        setIsAuthenticated(false);
+        setIsAdminUser(false);
+      } finally {
+        setIsLoading(false);
+      }
     }
     checkAuth();
   }, []);
@@ -48,6 +62,11 @@ const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false
             <Link href="/portal/marketplace" className="nav-link">Marketplace</Link>
             <Link href="/portal/giving" className="nav-link">Giving</Link>
             <Link href="/portal/community" className="nav-link">Community</Link>
+            {isAdminUser && (
+              <Link href="/admin" className="nav-link text-accent hover:text-highlight font-semibold">
+                Admin
+              </Link>
+            )}
             {isAuthenticated && (
               <button
                 onClick={handleSignOut}
@@ -105,6 +124,17 @@ const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false
             <Link href="/portal/marketplace" className="nav-link">Marketplace</Link>
             <Link href="/portal/giving" className="nav-link">Giving</Link>
             <Link href="/portal/community" className="nav-link">Community</Link>
+            {isAdminUser && (
+              <Link href="/admin" className="nav-link text-accent font-semibold">Admin</Link>
+            )}
+            {isAuthenticated && (
+              <button
+                onClick={handleSignOut}
+                className="nav-link text-left text-accent hover:text-highlight"
+              >
+                Sign Out
+              </button>
+            )}
           </div>
         ) : (
           <div className="flex flex-col space-y-4">

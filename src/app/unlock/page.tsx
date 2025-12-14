@@ -1,11 +1,57 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import GatedLayout from '@/app/GatedLayout';
 import VideoPlayer from '@/components/VideoPlayer';
 import Link from 'next/link';
+import { getCurrentUser } from '@/utils/auth';
 
 export default function Unlock() {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    async function checkAuth() {
+      const user = await getCurrentUser();
+      
+      if (!user) {
+        // Check if user has pending email verification
+        const pendingEmail = sessionStorage.getItem('pendingVerification');
+        if (pendingEmail) {
+          sessionStorage.removeItem('pendingVerification');
+          router.replace(`/signin?verify=1&email=${encodeURIComponent(pendingEmail)}`);
+          return;
+        }
+        
+        // Not authenticated - redirect to signin
+        router.replace('/signin?redirect=/unlock');
+        return;
+      }
+
+      setIsAuthenticated(true);
+      setIsCheckingAuth(false);
+    }
+
+    checkAuth();
+  }, [router]);
+
+  if (isCheckingAuth) {
+    return (
+      <GatedLayout showFooter={false}>
+        <div className="max-w-6xl mx-auto text-center py-20">
+          <div className="animate-pulse">
+            <div className="h-8 bg-accent/20 rounded w-3/4 mx-auto mb-4"></div>
+          </div>
+        </div>
+      </GatedLayout>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
   return (
     <GatedLayout showFooter={false}>
       <div className="max-w-6xl mx-auto text-center">

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Card from '@/components/Card';
 import { 
@@ -9,29 +10,78 @@ import {
   WealthShiftLevel,
   Workbook
 } from '@/utils/assessment';
+import { getCurrentUser } from '@/utils/auth';
 
 export default function Portal() {
+  const router = useRouter();
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [assessmentResult, setAssessmentResult] = useState<ReturnType<typeof getAssessmentResult>>(null);
   const [recommendedWorkbooks, setRecommendedWorkbooks] = useState<Workbook[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
-    // Check if the user has completed the assessment
-    const completed = hasCompletedAssessment();
-    setAssessmentCompleted(completed);
+    async function checkAuthAndLoadData() {
+      // First, check authentication
+      const user = await getCurrentUser();
+      
+      if (!user) {
+        // Check if user has pending email verification
+        const pendingEmail = sessionStorage.getItem('pendingVerification');
+        if (pendingEmail) {
+          // User just signed up but hasn't verified email
+          sessionStorage.removeItem('pendingVerification');
+          router.replace(`/signin?verify=1&email=${encodeURIComponent(pendingEmail)}`);
+          return;
+        }
+        
+        // Not authenticated - redirect to signin
+        router.replace('/signin?redirect=/portal');
+        return;
+      }
 
-    if (completed) {
-      // Get the assessment result
-      const result = getAssessmentResult();
-      setAssessmentResult(result);
+      // User is authenticated
+      setIsAuthenticated(true);
+      setIsCheckingAuth(false);
 
-      // Get the recommended workbooks
-      if (result) {
-        const recommended = result.recommendedWorkbooks.filter(workbook => workbook.recommended);
-        setRecommendedWorkbooks(recommended);
+      // Check if the user has completed the assessment
+      const completed = hasCompletedAssessment();
+      setAssessmentCompleted(completed);
+
+      if (completed) {
+        // Get the assessment result
+        const result = getAssessmentResult();
+        setAssessmentResult(result);
+
+        // Get the recommended workbooks
+        if (result) {
+          const recommended = result.recommendedWorkbooks.filter(workbook => workbook.recommended);
+          setRecommendedWorkbooks(recommended);
+        }
       }
     }
-  }, []);
+
+    checkAuthAndLoadData();
+  }, [router]);
+
+  // Show loading state while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div className="container mx-auto px-6">
+        <div className="text-center py-20">
+          <div className="animate-pulse">
+            <div className="h-8 bg-accent/20 rounded w-3/4 mx-auto mb-4"></div>
+            <div className="h-4 bg-accent/10 rounded w-1/2 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render portal content if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="container mx-auto px-6">
