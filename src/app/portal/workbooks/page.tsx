@@ -121,8 +121,8 @@ export default function Workbooks() {
   return (
     <div className="container mx-auto px-6">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-cream">Workbooks</h1>
-        <p className="text-xl max-w-3xl mx-auto text-cream/80">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-deep-sage">Workbooks</h1>
+        <p className="text-xl max-w-3xl mx-auto text-sage font-medium">
           Access guided workbooks to deepen your understanding and practice. All workbooks are delivered via Stanstore and accessible through FlipSnack.
         </p>
       </div>
@@ -133,13 +133,13 @@ export default function Workbooks() {
           <div className="md:w-1/4 text-center">
             <div className="text-8xl mb-4">🚪</div>
             <div className="bg-accent/20 rounded-full px-4 py-2 inline-block">
-              <span className="text-xl font-bold text-cream">FREE</span>
+              <span className="text-xl font-bold text-deep-sage">FREE</span>
             </div>
           </div>
           <div className="md:w-2/3">
-            <h2 className="text-3xl font-bold mb-2 text-cream">Golden Pass Starter Kit</h2>
-            <p className="text-lg text-cream/90 mb-4 italic">Begin your transformation - completely free</p>
-            <p className="mb-6 leading-relaxed text-cream/80">
+            <h2 className="text-3xl font-bold mb-2 text-deep-sage">Golden Pass Starter Kit</h2>
+            <p className="text-lg text-sage mb-4 italic font-medium">Begin your transformation - completely free</p>
+            <p className="mb-6 leading-relaxed text-portal-text-secondary font-medium">
               Get instant access to two powerful mini-workbooks, sample affirmation and lingo decks, 
               exclusive worksheets, and one month of community access.
             </p>
@@ -153,8 +153,8 @@ export default function Workbooks() {
         </div>
       </div>
       
-      <h2 className="text-3xl font-bold mb-8 text-center text-cream">Available Workbooks</h2>
-      <p className="text-center text-cream/80 mb-12 max-w-3xl mx-auto">
+      <h2 className="text-3xl font-bold mb-8 text-center text-deep-sage">Available Workbooks</h2>
+      <p className="text-center text-sage mb-12 max-w-3xl mx-auto font-medium">
         All workbooks are delivered digitally through Stanstore and accessible via FlipSnack. 
         Purchase a package to unlock your workbooks or start with the free Golden Pass.
       </p>
@@ -167,18 +167,18 @@ export default function Workbooks() {
           >
             <div className="text-center mb-4">
               <div className="text-5xl mb-3">{workbook.icon}</div>
-              <h3 className="text-xl font-bold mb-2 text-cream">{workbook.title}</h3>
-              <p className="text-sm text-accent mb-4">{workbook.packageRequired}</p>
+              <h3 className="text-xl font-bold mb-2 text-deep-sage">{workbook.title}</h3>
+              <p className="text-sm text-accent mb-4 font-medium">{workbook.packageRequired}</p>
             </div>
             
-            <p className="mb-4 leading-relaxed text-cream/80 text-sm">{workbook.description}</p>
+            <p className="mb-4 leading-relaxed text-sage text-sm font-medium">{workbook.description}</p>
             
             <div className="bg-deep-sage/20 rounded-md p-3 mb-4">
-              <div className="flex justify-between text-sm text-cream/70 mb-1">
+              <div className="flex justify-between text-sm text-portal-text-secondary mb-1 font-medium">
                 <span>Duration:</span>
                 <span className="font-semibold">{workbook.duration}</span>
               </div>
-              <div className="flex justify-between text-sm text-cream/70">
+              <div className="flex justify-between text-sm text-portal-text-secondary font-medium">
                 <span>Exercises:</span>
                 <span className="font-semibold">{workbook.exercises}+</span>
               </div>
@@ -198,33 +198,33 @@ export default function Workbooks() {
       
       {/* How It Works */}
       <div className="bg-gradient-to-br from-sage/10 to-deep-sage/10 rounded-lg shadow-lg p-8 mb-16 border border-accent/30">
-        <h2 className="text-2xl font-bold mb-6 text-cream text-center">How to Access Your Workbooks</h2>
+        <h2 className="text-2xl font-bold mb-6 text-deep-sage text-center">How to Access Your Workbooks</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="text-center">
             <div className="text-4xl mb-3">1️⃣</div>
-            <h3 className="font-bold mb-2 text-cream">Choose Your Package</h3>
-            <p className="text-sm text-cream/80">
+            <h3 className="font-bold mb-2 text-deep-sage">Choose Your Package</h3>
+            <p className="text-sm text-sage font-medium">
               Select the package that fits your journey - start free with Golden Pass or upgrade for more content.
             </p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">2️⃣</div>
-            <h3 className="font-bold mb-2 text-cream">Instant Delivery</h3>
-            <p className="text-sm text-cream/80">
+            <h3 className="font-bold mb-2 text-deep-sage">Instant Delivery</h3>
+            <p className="text-sm text-sage font-medium">
               After purchase, receive an email with FlipSnack links to all your workbooks and resources.
             </p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">3️⃣</div>
-            <h3 className="font-bold mb-2 text-cream">Start Your Journey</h3>
-            <p className="text-sm text-cream/80">
+            <h3 className="font-bold mb-2 text-deep-sage">Start Your Journey</h3>
+            <p className="text-sm text-sage font-medium">
               Access your workbooks anytime, anywhere through the FlipSnack platform.
             </p>
           </div>
         </div>
         
         <div className="text-center pt-6 border-t border-accent/20">
-          <p className="text-cream/90 mb-4">Ready to get started?</p>
+          <p className="text-sage mb-4 font-medium">Ready to get started?</p>
           <Link 
             href="/portal/packages"
             className="px-8 py-3 bg-accent hover:bg-highlight text-rich-green font-bold rounded-md transition-all duration-300 inline-block hover:shadow-[0_0_20px_rgba(212,168,80,0.6)] hover:-translate-y-1"
@@ -236,13 +236,13 @@ export default function Workbooks() {
 
       {/* Support */}
       <div className="text-center mb-16">
-        <h2 className="text-2xl font-bold mb-4 text-cream">Need Help Accessing Your Workbooks?</h2>
-        <p className="mb-6 leading-relaxed font-medium text-cream/80">
+        <h2 className="text-2xl font-bold mb-4 text-deep-sage">Need Help Accessing Your Workbooks?</h2>
+        <p className="mb-6 leading-relaxed font-medium text-sage">
           If you&apos;ve purchased a package and need assistance accessing your workbooks, our team is here to help.
         </p>
         <a 
           href="mailto:support@thewealthshift.com" 
-          className="px-6 py-3 bg-transparent border-2 border-accent hover:bg-accent/20 text-cream font-semibold rounded-md transition-all duration-300 inline-block"
+          className="px-6 py-3 bg-transparent border-2 border-accent hover:bg-accent/20 text-deep-sage font-semibold rounded-md transition-all duration-300 inline-block"
         >
           Contact Support
         </a>

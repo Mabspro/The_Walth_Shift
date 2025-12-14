@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SvgAccent from '@/components/SvgAccent';
 import VideoSection from '@/components/VideoSection';
+import EmailSubscribe from '@/components/EmailSubscribe';
 import { motion } from 'framer-motion';
 
 export default function Home() {
@@ -389,6 +390,23 @@ export default function Home() {
                 </motion.div>
               </div>
             </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Email Subscription Section */}
+        <motion.section
+          className="py-16 bg-rich-green relative"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="container mx-auto px-6 max-w-4xl">
+            <EmailSubscribe
+              title="Stay Connected with The Wealth Shift"
+              description="Join our community and receive exclusive insights, updates, and resources to support your wealth journey."
+              source="landing_page"
+            />
           </div>
         </motion.section>
       </main>

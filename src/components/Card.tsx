@@ -44,8 +44,8 @@ const Card: React.FC<CardProps> = ({
             {icon}
           </div>
         )}
-        <h3 className="text-xl font-bold mb-2 text-portal-text-primary">{title}</h3>
-        {description && <p className="mb-4 leading-relaxed font-medium text-portal-text-secondary">{description}</p>}
+        <h3 className="text-xl font-bold mb-2 text-deep-sage">{title}</h3>
+        {description && <p className="mb-4 leading-relaxed font-medium text-sage">{description}</p>}
         {children}
         {linkUrl && (
           <div className="mt-4">

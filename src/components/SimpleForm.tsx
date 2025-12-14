@@ -101,8 +101,17 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
           // Call the onSubmit callback if provided
           onSubmit(formData);
         } else if (redirectUrl) {
-          // Redirect to the next page if redirectUrl is provided
-          router.push(redirectUrl);
+          // Check if user has pending email verification
+          const pendingEmail = sessionStorage.getItem('pendingVerification');
+          if (pendingEmail && (redirectUrl.includes('/portal') || redirectUrl.includes('/unlock'))) {
+            // User just signed up and needs to verify email
+            sessionStorage.removeItem('pendingVerification');
+            router.replace(`/signin?verify=1&email=${encodeURIComponent(pendingEmail)}`);
+            return;
+          }
+          
+          // Use replace to avoid adding to history and prevent navigation issues
+          router.replace(redirectUrl);
         }
         
         // Reset submission state if not redirecting
@@ -119,7 +128,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
         <h2 className="text-2xl font-bold mb-2 text-portal-text-primary">{title}</h2>
         
         {description && (
-          <p className="mb-6 leading-relaxed text-portal-text-secondary">
+          <p className="mb-6 leading-relaxed text-portal-text-primary font-medium">
             {description}
           </p>
         )}
@@ -129,10 +138,10 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
             <div key={question.id} className="space-y-2">
               <label 
                 htmlFor={question.id} 
-                className="block font-medium text-portal-text-primary"
+                className="block font-semibold text-portal-text-primary text-base"
               >
                 {question.text}
-                {question.required && <span className="text-red-400 ml-1">*</span>}
+                {question.required && <span className="text-red-500 ml-1 font-bold">*</span>}
               </label>
               
               {question.type === 'text' && (
@@ -170,7 +179,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
                       />
                       <label 
                         htmlFor={`${question.id}-${option}`}
-                        className="text-portal-text-secondary"
+                        className="text-portal-text-primary font-medium cursor-pointer"
                       >
                         {option}
                       </label>
@@ -193,8 +202,7 @@ const SimpleForm: React.FC<SimpleFormProps> = ({
                       />
                       <label 
                         htmlFor={`${question.id}-${option}`}
-                        className="opacity-90"
-                        style={{ color: 'var(--soft-sage)' }}
+                        className="text-portal-text-primary font-medium leading-relaxed cursor-pointer"
                       >
                         {option}
                       </label>

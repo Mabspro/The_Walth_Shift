@@ -10,11 +10,13 @@ import { useSearchParams } from 'next/navigation';
 function ManifestoContent() {
   const searchParams = useSearchParams();
   const [showCommitment, setShowCommitment] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   
   useEffect(() => {
     // Check if the page was accessed from the assessment flow
     const fromFlow = searchParams.get('flow') === 'assessment';
     setShowCommitment(fromFlow);
+    setIsInitialized(true);
   }, [searchParams]);
   
   return (
@@ -42,10 +44,11 @@ function ManifestoContent() {
       
       {/* Commented out original manifesto content */}
       
-      {showCommitment && (
+      {/* Only show commitment form if coming from assessment flow */}
+      {isInitialized && showCommitment && (
         <div className="bg-portal-beige-card rounded-lg p-8 mb-12 border border-portal-border shadow-lg">
           <h2 className="text-2xl font-bold mb-4 text-center text-portal-text-primary">Affirm Your Commitment</h2>
-          <p className="text-center mb-8 leading-relaxed text-portal-text-secondary">
+          <p className="text-center mb-8 leading-relaxed text-portal-text-primary font-medium">
             To continue your journey and unlock access to our portal, please affirm your commitment
             to The Wealth Shift principles by completing the form below.
           </p>

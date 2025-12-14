@@ -1,5 +1,9 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { getCurrentUser, signOut } from '@/utils/auth';
 
 interface NavBarProps {
   isPortal?: boolean;
@@ -7,6 +11,24 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false }) => {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function checkAuth() {
+      const user = await getCurrentUser();
+      setIsAuthenticated(!!user);
+      setIsLoading(false);
+    }
+    checkAuth();
+  }, []);
+
+  const handleSignOut = async () => {
+    await signOut();
+    setIsAuthenticated(false);
+    router.push('/');
+  };
   return (
     <nav className={`w-full py-4 px-6 fixed top-0 left-0 z-50 transition-all duration-300 ${
       isTransparent 
@@ -19,19 +41,44 @@ const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false
         </Link>
         
         {isPortal ? (
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <Link href="/portal" className="nav-link">Dashboard</Link>
             <Link href="/portal/workbooks" className="nav-link">Workbooks</Link>
             <Link href="/portal/challenges" className="nav-link">Challenges</Link>
             <Link href="/portal/marketplace" className="nav-link">Marketplace</Link>
             <Link href="/portal/giving" className="nav-link">Giving</Link>
-            <Link href="/portal/celebration" className="nav-link">Celebration</Link>
+            <Link href="/portal/community" className="nav-link">Community</Link>
+            {isAuthenticated && (
+              <button
+                onClick={handleSignOut}
+                className="nav-link text-accent hover:text-highlight"
+              >
+                Sign Out
+              </button>
+            )}
           </div>
         ) : (
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/assessment" className="nav-link">Assessment</Link>
             <Link href="/manifesto" className="nav-link">Manifesto</Link>
+            {!isLoading && (
+              <>
+                {isAuthenticated ? (
+                  <Link href="/portal" className="nav-link text-accent">Portal</Link>
+                ) : (
+                  <>
+                    <Link href="/signin" className="nav-link">Sign In</Link>
+                    <Link 
+                      href="/assessment" 
+                      className="px-4 py-2 bg-accent hover:bg-highlight text-rich-green font-semibold rounded-md transition-all duration-300"
+                    >
+                      Sign Up
+                    </Link>
+                  </>
+                )}
+              </>
+            )}
           </div>
         )}
         
@@ -57,13 +104,33 @@ const NavBar: React.FC<NavBarProps> = ({ isPortal = false, isTransparent = false
             <Link href="/portal/challenges" className="nav-link">Challenges</Link>
             <Link href="/portal/marketplace" className="nav-link">Marketplace</Link>
             <Link href="/portal/giving" className="nav-link">Giving</Link>
-            <Link href="/portal/celebration" className="nav-link">Celebration</Link>
+            <Link href="/portal/community" className="nav-link">Community</Link>
           </div>
         ) : (
           <div className="flex flex-col space-y-4">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/assessment" className="nav-link">Assessment</Link>
             <Link href="/manifesto" className="nav-link">Manifesto</Link>
+            {!isLoading && (
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Link href="/portal" className="nav-link text-accent">Portal</Link>
+                    <button
+                      onClick={handleSignOut}
+                      className="nav-link text-left text-accent hover:text-highlight"
+                    >
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/signin" className="nav-link">Sign In</Link>
+                    <Link href="/assessment" className="nav-link text-accent">Sign Up</Link>
+                  </>
+                )}
+              </>
+            )}
           </div>
         )}
       </div>

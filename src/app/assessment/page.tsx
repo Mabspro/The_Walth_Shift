@@ -20,9 +20,38 @@ export default function Assessment() {
   const [showModal, setShowModal] = useState(false);
   const [assessmentResult, setAssessmentResult] = useState<ReturnType<typeof calculateAssessmentResult> | null>(null);
 
-  const handleAssessmentComplete = async (answers: AssessmentAnswer[], email: string, fullName: string, phone?: string) => {
+  const handleAssessmentComplete = async (
+    answers: AssessmentAnswer[], 
+    email: string, 
+    fullName: string, 
+    phone?: string,
+    password?: string,
+    createAccount?: boolean
+  ) => {
     // Calculate the assessment result
     const result = calculateAssessmentResult(answers);
+    
+    // If user wants to create an account, do that first
+    if (createAccount && password) {
+      const { signUp } = await import('@/utils/auth');
+      const signUpResult = await signUp({
+        email,
+        password,
+        fullName,
+        phone
+      });
+
+      if (signUpResult.success) {
+        // Account created successfully - store email for later redirect
+        // User needs to verify email before accessing portal
+        // We'll show results first, then redirect to signin when they try to enter portal
+        sessionStorage.setItem('pendingVerification', email);
+      } else {
+        // Handle signup error - could show error message
+        console.error('Account creation failed:', signUpResult.error);
+        // Continue with assessment anyway (guest mode)
+      }
+    }
     
     // Save to both localStorage and Supabase
     await saveAssessmentToDatabase(email, fullName, phone, answers, result);
@@ -33,8 +62,9 @@ export default function Assessment() {
     setShowResults(true);
     
     // After a delay, redirect to the manifesto page with flow parameter
+    // Use replace to avoid adding to history and prevent back button issues
     setTimeout(() => {
-      router.push('/manifesto?flow=assessment');
+      router.replace('/manifesto?flow=assessment');
     }, 8000); // 8 seconds to read the results
   };
 

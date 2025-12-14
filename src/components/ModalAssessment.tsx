@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { assessmentQuestions, calculateAnswerScore, AssessmentAnswer } from '@/utils/assessment';
 
 interface ModalAssessmentProps {
-  onComplete: (answers: AssessmentAnswer[], email: string, fullName: string) => void;
+  onComplete: (answers: AssessmentAnswer[], email: string, fullName: string, phone?: string, password?: string, createAccount?: boolean) => void;
   onClose?: () => void;
 }
 
@@ -15,6 +15,9 @@ const ModalAssessment: React.FC<ModalAssessmentProps> = ({ onComplete, onClose }
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [createAccount, setCreateAccount] = useState(false);
   const [showPersonalInfo, setShowPersonalInfo] = useState(false);
 
   const totalQuestions = assessmentQuestions.length;
@@ -57,7 +60,7 @@ const ModalAssessment: React.FC<ModalAssessmentProps> = ({ onComplete, onClose }
 
   const handleSubmit = () => {
     if (email && fullName) {
-      onComplete(answers, email, fullName);
+      onComplete(answers, email, fullName, phone || undefined, createAccount ? password : undefined, createAccount);
     }
   };
 
@@ -200,6 +203,64 @@ const ModalAssessment: React.FC<ModalAssessmentProps> = ({ onComplete, onClose }
                       placeholder="your.email@example.com"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-portal-text-primary mb-2">
+                      Phone Number <span className="text-portal-text-muted text-xs">(Optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full px-4 py-3 bg-portal-beige-light rounded-lg border-2 border-portal-border focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 text-portal-text-primary transition-all"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+
+                  <div className="pt-4 border-t border-portal-border">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={createAccount}
+                        onChange={(e) => setCreateAccount(e.target.checked)}
+                        className="mt-1 w-5 h-5 text-accent border-portal-border rounded focus:ring-accent"
+                      />
+                      <div className="flex-1">
+                        <span className="block text-sm font-semibold text-portal-text-primary mb-1">
+                          Create an account
+                        </span>
+                        <span className="block text-xs text-portal-text-secondary">
+                          Save your progress and access your personalized portal anytime
+                        </span>
+                      </div>
+                    </label>
+                  </div>
+
+                  {createAccount && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-4"
+                    >
+                      <div>
+                        <label className="block text-sm font-semibold text-portal-text-primary mb-2">
+                          Password <span className="text-accent">*</span>
+                        </label>
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="w-full px-4 py-3 bg-portal-beige-light rounded-lg border-2 border-portal-border focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 text-portal-text-primary transition-all"
+                          placeholder="Create a password (min. 8 characters)"
+                          minLength={8}
+                        />
+                        <p className="mt-1 text-xs text-portal-text-secondary">
+                          Must be at least 8 characters with uppercase, lowercase, and a number
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -232,9 +293,9 @@ const ModalAssessment: React.FC<ModalAssessmentProps> = ({ onComplete, onClose }
             ) : (
               <button
                 onClick={handleSubmit}
-                disabled={!email || !fullName}
+                disabled={!email || !fullName || (createAccount && (!password || password.length < 8))}
                 className={`luxury-button px-8 py-3 rounded-lg font-semibold text-portal-beige transition-all duration-300 ${
-                  !email || !fullName ? 'opacity-50 cursor-not-allowed' : ''
+                  !email || !fullName || (createAccount && (!password || password.length < 8)) ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
                 See My Results →
