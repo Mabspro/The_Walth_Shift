@@ -48,7 +48,7 @@ export interface Database {
           wealth_shift_level: string | null
           mindset_type: string | null
           total_score: number | null
-          responses: Record<string, any> // JSONB
+          responses: Record<string, unknown> // JSONB
           completed_at: string
           ip_address: string | null
           user_agent: string | null
@@ -62,7 +62,7 @@ export interface Database {
           wealth_shift_level?: string | null
           mindset_type?: string | null
           total_score?: number | null
-          responses: Record<string, any>
+          responses: Record<string, unknown>
           completed_at?: string
           ip_address?: string | null
           user_agent?: string | null
@@ -76,7 +76,7 @@ export interface Database {
           wealth_shift_level?: string | null
           mindset_type?: string | null
           total_score?: number | null
-          responses?: Record<string, any>
+          responses?: Record<string, unknown>
           completed_at?: string
           ip_address?: string | null
           user_agent?: string | null
@@ -276,7 +276,7 @@ export interface Database {
           action: string
           entity_type: string | null
           entity_id: string | null
-          details: Record<string, any> | null // JSONB
+          details: Record<string, unknown> | null // JSONB
           ip_address: string | null
           created_at: string
         }
@@ -286,7 +286,7 @@ export interface Database {
           action: string
           entity_type?: string | null
           entity_id?: string | null
-          details?: Record<string, any> | null
+          details?: Record<string, unknown> | null
           ip_address?: string | null
           created_at?: string
         }
@@ -296,7 +296,7 @@ export interface Database {
           action?: string
           entity_type?: string | null
           entity_id?: string | null
-          details?: Record<string, any> | null
+          details?: Record<string, unknown> | null
           ip_address?: string | null
           created_at?: string
         }

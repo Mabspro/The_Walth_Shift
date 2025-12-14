@@ -6,7 +6,6 @@ import GatedLayout from '@/app/GatedLayout';
 import ModalAssessment from '@/components/ModalAssessment';
 import { 
   calculateAssessmentResult, 
-  saveAssessmentResult,
   saveAssessmentToDatabase,
   AssessmentAnswer,
   getPersonalizedMessage,
